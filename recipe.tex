@@ -1,0 +1,225 @@
+\documentclass[11pt]{article}
+\usepackage[ngerman]{babel} 	% Deutsche Sprachunterstützung für Silbentrennung, etc.
+\usepackage[T1]{fontenc}		% Erlaubt das kopieren/suchen von/nach Umlauten im pdf-Dokument
+\usepackage[utf8]{inputenc}		% Encoding der tex-Dateien, erlaubt direkte Eingabe von Sonderzeichen
+\usepackage{lmodern}			% Schönere Schriftart für pdf-Dokumente
+
+\usepackage{enumerate}			% Aufzählungen wie a), (I), etc. als optionales Argument
+\usepackage{parskip}			% Entfernt Einrückung bei Absätzen und fügt vertikalen Abstand ein
+\usepackage{float}              % Erlaubt [H] Option für table/figure
+%\usepackage{scrhack} 			% Wegen float-package, das eine warnung mit scrbook erzeugt
+
+\usepackage{algpseudocode}		% algorithmicx package für Pseudo-Code
+\usepackage{verbatim}			% Für Ascii-Art ;-)
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{mathdots}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath}
+%\usepackage{amsfont}
+%\usepackage{amssymb}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{st}[thm]{Satz}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{df}[thm]{Definition}
+\newtheorem{kor}[thm]{Korollar}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{alg}[thm]{Algorithmus}
+
+%\theoremheadertypefont{\color{black}} % Font für Theorem-Typ (Satz, Definition, etc.)
+\theoremstyle{break}
+
+\newtheorem{nt}[thm]{Bemerkung}
+\newtheorem{ex}[thm]{Beispiel}
+
+\newtheorem*{note}{Bemerkung}
+
+\usepackage{multicol}
+% Margins
+\topmargin=-0.5in
+\evensidemargin=0in
+\oddsidemargin=-0.5in
+\textwidth=7.5in
+\textheight=9.0in
+\headsep=0.5in 
+
+\pagestyle{fancy}
+
+\rhead{Matthias \textsc{Hofmann}} % Top right header
+\lhead{Schrödinger mit inversquadratischem Potential\\
+\today}
+\chead{ }
+%\title{}
+
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+
+
+% Oberer Teil der Titelseite:
+
+\textsc{\LARGE Universität Stuttgart}\\[1.5cm]
+
+\textsc{\Large Masterseminar Funktionalanalysis}\\[0.5cm]
+
+
+% Title
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\HRule \\[0.4cm]
+{ \huge \bfseries Schrödingeroperatoren mit inversquadratischem Potential}\\[0.4cm]
+
+\HRule \\[1.5cm]
+
+% Author and supervisor
+
+\begin{center} \Large
+Matthias \textsc{Hofmann}
+\end{center}
+
+\hfill
+
+\vfill
+
+% Unterer Teil der Seite
+{\large \today}
+
+\end{center}
+
+\end{titlepage}
+\section{Einführung}
+Wir betrachten im Folgenden die Wärmeleitungsgleichung
+\begin{equation}\label{heat}
+\begin{cases}
+\partial_t u - \Delta u =0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0.
+\end{cases}
+\end{equation}
+Dann ist die Lösung der Wärmeleitungsgleichung eindeutig durch
+\begin{equation}
+u(x,t)=\int_{\mathbb R^N} K(x-y, t) u_0(y) \, \mathrm dy,
+\end{equation}
+wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische Lösung des Problems \eqref{heat} 
+und
+\begin{equation}
+T(t)\phi:=e^{\Delta t}\phi:=\int_{\mathbb R^N} K(x-y,t) \phi(y)\, \mathrm dy 
+\end{equation}
+definiert eine stark stetige Halbgruppe auf $L^2(\mathbb R^N)$ (vgl. \cite{engel-nagel} Beispiel II.2.12). Sie erhält Positivität, sodass für $\phi \ge 0$ auch $T(t) \phi \ge 0$, und ist analytisch für $t>0$.
+
+Sei $A_V= -\Delta - V(\cdot)$ ein Schrödinger-Operator auf $L^2(\mathbb R^N)$, sodass
+\begin{equation}
+0\le V\in L^\infty(\{x:|x|\ge \varepsilon\})
+\end{equation}\label{perturbed}
+für jedes $\varepsilon>0$. Wie verhalten sich Lösungen der gestörten Wärmeleitungsgleichung 
+\begin{equation}
+\partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
+\end{equation}
+Für $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschränkten Multiplikationsoperator und die Existenz von klassischen Lösungen folgt aus dem Satz \ref{bounded} (s. Appendix) für beschränkte Störungen. %\vspace{.25cm}
+Was passiert, wenn $V$ zu singulär wird?
+
+Wir erlauben im Folgenden auch schwache Lösungen von \eqref{heat}. \vspace{.25cm}
+\begin{df}
+$u$ ist schwache Lösung von \eqref{perturbed} falls, für jedes $T, R>0$, gilt
+\begin{gather}
+u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
+\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
+\end{gather}
+für alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
+\end{df}
+
+H. Brezis und J. L. Lions vermuteten, dass für $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive Lösungen besitzt. P. Baras und A. Goldstein lösten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
+
+\begin{thm}[Baras--Goldstein]
+Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive Lösungen (z.B. für $u(x,0)=u_0(x)$ für jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive Lösungen falls $c>C^*(N)$.
+\end{thm}
+\begin{proof}[Beweisidee]
+Sei $V_n(x)=\inf\{V_c(x), n\}$ 
+\end{proof}
+
+\appendix
+\section{Appendix}
+\subsection{Halbgruppen bei Beschränkten Störungen}
+\begin{thm}\label{bounded}
+Sei $(A, D(A))$ erzeugt von einer stark stetigen Halbgruppe $(T(t))_{t\ge 0}$ auf einem Banachraum $X$, sodass
+\begin{equation}
+\|T(t)\|\le M e^{\omega t}
+\end{equation}
+für alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, dann erzeugt $C:=A+B$ mit $D(C)=D(A)$ eine stark stetige Halbgruppe mit
+\begin{equation}
+\|S(t)\|\le M e^{(w+ M\|B\|) t}
+\end{equation}
+für alle $t\ge 0$. Diese erfüllt das \emph{Duhamel-Prinzip}:
+\begin{equation}
+S(t) x = T(t) x + \int_0^t T(t-s) B S(s) x \,\mathrm ds
+\end{equation}
+für alle $t\ge 0$ und $x\in X$. Insbesondere übertragen sich Eigenschaften wie Postivität (falls $B\ge 0$) und Analytizität.
+\end{thm}
+\begin{proof}
+Wir verweisen auf \cite{engel-nagel} Satz III.1.3 und Korollar III.1.7. Die Positivität der Halbgruppe folgt aus \cite{engel-nagel} Korollar VI.2.4 und die Analytizät nach Theorem III.2.10.
+\end{proof}
+
+\begin{thebibliography}{tief}
+\bibitem{baras-goldstein} Baras, Pierre; Goldstein, Jerome A:
+{\it The heat equation with a singular potential}.
+Trans. Amer. Math. Soc. 284 (1984), no. 1, 121–139.
+\bibitem{cabre-martel} Cabré, Xavier; Martel, Yvan:
+{\it Existence versus explosion instantanée pour des équations de la chaleur linéaires avec potentiel singulier}. (French. English, French summary) [Existence versus instantaneous blowup for linear heat equations with singular potentials]
+C. R. Acad. Sci. Paris Sér. I Math. 329 (1999), no. 11, 973–978. 
+\bibitem{engel-nagel} Engel, Klaus-Jochen; Nagel, Rainer:
+{\it A short course on operator semigroups}. Universitext. Springer, New York, 2006.
+\bibitem{goldstein-rhandi} Goldstein, G. R.; Goldstein, J. A.; Rhandi, A.: {\it Weighted Hardy's inequality and the Kolmogorov equation perturbed by an inverse-square potential}.
+Appl. Anal. 91 (2012), no. 11, 2057–2071. 
+\bibitem{rhandi} Rhandi, Abdelaziz: {\it Heat and Ornstein-Uhlenbeck semigroups perturbed by an inverse-square potential}. 
+                     Unpublished, 2015.
+\end{thebibliography} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

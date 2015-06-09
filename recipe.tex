@@ -1,16 +1,17 @@
 \documentclass[11pt]{article}
-\usepackage[ngerman]{babel} 	% Deutsche Sprachunterstützung für Silbentrennung, etc.
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel} 	% Deutsche Sprachunterst\"utzung f\"ur Silbentrennung, etc.
 \usepackage[T1]{fontenc}		% Erlaubt das kopieren/suchen von/nach Umlauten im pdf-Dokument
-\usepackage[utf8]{inputenc}		% Encoding der tex-Dateien, erlaubt direkte Eingabe von Sonderzeichen
-\usepackage{lmodern}			% Schönere Schriftart für pdf-Dokumente
+		% Encoding der tex-Dateien, erlaubt direkte Eingabe von Sonderzeichen
+\usepackage{lmodern}			% Sch\"onere Schriftart f\"ur pdf-Dokumente
 
-\usepackage{enumerate}			% Aufzählungen wie a), (I), etc. als optionales Argument
-\usepackage{parskip}			% Entfernt Einrückung bei Absätzen und fügt vertikalen Abstand ein
-\usepackage{float}              % Erlaubt [H] Option für table/figure
+\usepackage{enumerate}			% Aufz\"ahlungen wie a), (I), etc. als optionales Argument
+\usepackage{parskip}			% Entfernt Einr\"uckung bei Abs\"atzen und f\"ugt vertikalen Abstand ein
+\usepackage{float}              % Erlaubt [H] Option f\"ur table/figure
 %\usepackage{scrhack} 			% Wegen float-package, das eine warnung mit scrbook erzeugt
 
-\usepackage{algpseudocode}		% algorithmicx package für Pseudo-Code
-\usepackage{verbatim}			% Für Ascii-Art ;-)
+\usepackage{algpseudocode}		% algorithmicx package f\"ur Pseudo-Code
+\usepackage{verbatim}			% F\"ur Ascii-Art ;-)
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -36,7 +37,7 @@
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{alg}[thm]{Algorithmus}
 
-%\theoremheadertypefont{\color{black}} % Font für Theorem-Typ (Satz, Definition, etc.)
+%\theoremheadertypefont{\color{black}} % Font f\"ur Theorem-Typ (Satz, Definition, etc.)
 \theoremstyle{break}
 
 \newtheorem{nt}[thm]{Bemerkung}
@@ -56,7 +57,7 @@
 \pagestyle{fancy}
 
 \rhead{Matthias \textsc{Hofmann}} % Top right header
-\lhead{Schrödinger mit inversquadratischem Potential\\
+\lhead{Schr\"odinger mit inversquadratischem Potential\\
 \today}
 \chead{ }
 %\title{}
@@ -69,7 +70,7 @@
 
 % Oberer Teil der Titelseite:
 
-\textsc{\LARGE Universität Stuttgart}\\[1.5cm]
+\textsc{\LARGE Universit\"at Stuttgart}\\[1.5cm]
 
 \textsc{\Large Masterseminar Funktionalanalysis}\\[0.5cm]
 
@@ -77,7 +78,7 @@
 % Title
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \HRule \\[0.4cm]
-{ \huge \bfseries Schrödingeroperatoren mit inversquadratischem Potential}\\[0.4cm]
+{ \huge \bfseries Schr\"odingeroperatoren mit inversquadratischem Potential}\\[0.4cm]
 
 \HRule \\[1.5cm]
 
@@ -97,88 +98,116 @@ Matthias \textsc{Hofmann}
 \end{center}
 
 \end{titlepage}
-\section{Einführung}
-Wir betrachten im Folgenden die Wärmeleitungsgleichung
+\section{Einf\"uhrung}
+Wir betrachten im Folgenden die W\"armeleitungsgleichung
 \begin{equation}\label{heat}
 \begin{cases}
 \partial_t u - \Delta u =0, t\ge 0, x\in \mathbb R^N,\\
 u(x,0)=u_0 \ge 0.
 \end{cases}
 \end{equation}
-Dann ist die Lösung der Wärmeleitungsgleichung eindeutig durch
+Dann ist die L\"osung der W\"armeleitungsgleichung eindeutig durch
 \begin{equation}
 u(x,t)=\int_{\mathbb R^N} K(x-y, t) u_0(y) \, \mathrm dy,
 \end{equation}
-wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische Lösung des Problems \eqref{heat} 
+wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische L\"osung des Problems \eqref{heat} 
 und
 \begin{equation}
 T(t)\phi:=e^{\Delta t}\phi:=\int_{\mathbb R^N} K(x-y,t) \phi(y)\, \mathrm dy 
 \end{equation}
-definiert eine stark stetige Halbgruppe auf $L^2(\mathbb R^N)$ (vgl. \cite{engel-nagel} Beispiel II.2.12). Sie erhält Positivität, sodass für $\phi \ge 0$ auch $T(t) \phi \ge 0$, und ist analytisch für $t>0$.
+definiert eine stark stetige Halbgruppe auf $L^2(\mathbb R^N)$ (vgl. \cite{engel-nagel} Beispiel II.2.12). Sie erh\"alt Positivit\"at, sodass f\"ur $\phi \ge 0$ auch $T(t) \phi \ge 0$, und ist analytisch f\"ur $t>0$.
 
-Sei $A_V= -\Delta - V(\cdot)$ ein Schrödinger-Operator auf $L^2(\mathbb R^N)$, sodass
+Sei $A_V= -\Delta - V(\cdot)$ ein Schr\"odinger-Operator auf $L^2(\mathbb R^N)$, sodass
 \begin{equation}
 0\le V\in L^\infty(\{x:|x|\ge \varepsilon\})
 \end{equation}\label{perturbed}
-für jedes $\varepsilon>0$. Wie verhalten sich Lösungen der gestörten Wärmeleitungsgleichung 
+f\"ur jedes $\varepsilon>0$. Wie verhalten sich L\"osungen der gest\"orten W\"armeleitungsgleichung 
 \begin{equation}
 \partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
 \end{equation}
-Für $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschränkten Multiplikationsoperator und die Existenz von klassischen Lösungen folgt aus dem Satz \ref{bounded} (s. Appendix) für beschränkte Störungen. %\vspace{.25cm}
-Was passiert, wenn $V$ zu singulär wird?
+F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
+Was passiert, wenn $V$ zu singul\"ar wird?
 
-Wir erlauben im Folgenden auch schwache Lösungen von \eqref{heat}. \vspace{.25cm}
+Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{heat}. \vspace{.25cm}
 \begin{df}
-$u$ ist schwache Lösung von \eqref{perturbed} falls, für jedes $T, R>0$, gilt
+$u$ ist schwache L\"osung von \eqref{perturbed} falls, f\"ur jedes $T, R>0$, gilt
 \begin{gather}
 u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
 \int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
 \end{gather}
-für alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
+f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
 \end{df}
 
-H. Brezis und J. L. Lions vermuteten, dass für $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive Lösungen besitzt. P. Baras und A. Goldstein lösten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
+H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
 
 \begin{thm}[Baras--Goldstein]
-Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive Lösungen (z.B. für $u(x,0)=u_0(x)$ für jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive Lösungen falls $c>C^*(N)$.
+Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
 \end{thm}
 \begin{proof}[Beweisidee]
-Sei $V_n(x)=\inf\{V_c(x), n\}$ 
+Sei $V_n(x)=\inf\{V_c(x), n\}$ das \emph{cutoff}-Potential. Bezeichne $u_n$ die L\"osung von
+\begin{equation}\label{cutoff}
+\begin{cases}
+\partial_t u_n - \Delta u_n - V_n u_n =0, t\ge 0, x\in \mathbb R^N,\\
+u_n(x,0)=u(x,0)=f(x)\ge 0.
+\end{cases}
+\end{equation}
+Dann falls $c\le C^*(N)$ k\"onnen wir zum Grenzwert $n\to \infty$ \"ubergehen und erhalten eine L\"osung.  Die Schwierigkeit liegt im Erhalt der Konvergenz.
 \end{proof}
 
+\section{Das Cabr\'e--Martel Theorem}
+
+Wir definieren den Grundzustand von $-(\Delta +V)$ durch
+\begin{equation}
+\lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
+\end{equation}
+X. Cabr\'e und Y. Martel zeigten 1999 den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
+\begin{thm}[Cabr\'e--Martel Theorem]
+Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
+\begin{enumerate}[(i)]
+\item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive Lösung $u\in C([0,\infty), L^2(\mathbb R^N))$, sodass
+\begin{equation}
+\|u(t)\|_{L^2(\mathbb R^N)} \le e^{\omega t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0
+\end{equation}
+für ein $\omega\in \mathbb R$.
+\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt für $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive Lösung von \eqref{heat}.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+Betrachte im Folgenden die Lösungen $u_n$ von.  $\Delta + V_n$ 
+\end{proof}
 \appendix
 \section{Appendix}
-\subsection{Halbgruppen bei Beschränkten Störungen}
+\subsection{Halbgruppen bei Beschr\"ankten St\"orungen}
 \begin{thm}\label{bounded}
 Sei $(A, D(A))$ erzeugt von einer stark stetigen Halbgruppe $(T(t))_{t\ge 0}$ auf einem Banachraum $X$, sodass
 \begin{equation}
 \|T(t)\|\le M e^{\omega t}
 \end{equation}
-für alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, dann erzeugt $C:=A+B$ mit $D(C)=D(A)$ eine stark stetige Halbgruppe mit
+f\"ur alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, dann erzeugt $C:=A+B$ mit $D(C)=D(A)$ eine stark stetige Halbgruppe mit
 \begin{equation}
 \|S(t)\|\le M e^{(w+ M\|B\|) t}
 \end{equation}
-für alle $t\ge 0$. Diese erfüllt das \emph{Duhamel-Prinzip}:
+f\"ur alle $t\ge 0$. Diese erf\"ullt das \emph{Duhamel-Prinzip}:
 \begin{equation}
 S(t) x = T(t) x + \int_0^t T(t-s) B S(s) x \,\mathrm ds
 \end{equation}
-für alle $t\ge 0$ und $x\in X$. Insbesondere übertragen sich Eigenschaften wie Postivität (falls $B\ge 0$) und Analytizität.
+f\"ur alle $t\ge 0$ und $x\in X$. Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) und Analytizit\"at.
 \end{thm}
 \begin{proof}
-Wir verweisen auf \cite{engel-nagel} Satz III.1.3 und Korollar III.1.7. Die Positivität der Halbgruppe folgt aus \cite{engel-nagel} Korollar VI.2.4 und die Analytizät nach Theorem III.2.10.
+Wir verweisen auf \cite{engel-nagel} Satz III.1.3 und Korollar III.1.7. Die Positivit\"at der Halbgruppe folgt aus \cite{engel-nagel} Korollar VI.2.4 und die Analytiz\"at nach Theorem III.2.10. 
 \end{proof}
 
 \begin{thebibliography}{tief}
 \bibitem{baras-goldstein} Baras, Pierre; Goldstein, Jerome A:
 {\it The heat equation with a singular potential}.
-Trans. Amer. Math. Soc. 284 (1984), no. 1, 121–139.
-\bibitem{cabre-martel} Cabré, Xavier; Martel, Yvan:
-{\it Existence versus explosion instantanée pour des équations de la chaleur linéaires avec potentiel singulier}. (French. English, French summary) [Existence versus instantaneous blowup for linear heat equations with singular potentials]
-C. R. Acad. Sci. Paris Sér. I Math. 329 (1999), no. 11, 973–978. 
+Trans. Amer. Math. Soc. 284 (1984), no. 1, 121-139.
+\bibitem{cabre-martel} Cabr\'e, Xavier; Martel, Yvan:
+{\it Existence versus explosion instantan\'ee pour des \'equations de la chaleur lin\'eaires avec potentiel singulier}. (French. English, French summary) [Existence versus instantaneous blowup for linear heat equations with singular potentials]
+C. R. Acad. Sci. Paris S\'er. I Math. 329 (1999), no. 11, 973-978. 
 \bibitem{engel-nagel} Engel, Klaus-Jochen; Nagel, Rainer:
 {\it A short course on operator semigroups}. Universitext. Springer, New York, 2006.
 \bibitem{goldstein-rhandi} Goldstein, G. R.; Goldstein, J. A.; Rhandi, A.: {\it Weighted Hardy's inequality and the Kolmogorov equation perturbed by an inverse-square potential}.
-Appl. Anal. 91 (2012), no. 11, 2057–2071. 
+Appl. Anal. 91 (2012), no. 11, 2057-2071. 
 \bibitem{rhandi} Rhandi, Abdelaziz: {\it Heat and Ornstein-Uhlenbeck semigroups perturbed by an inverse-square potential}. 
                      Unpublished, 2015.
 \end{thebibliography} 

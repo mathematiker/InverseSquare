@@ -122,16 +122,22 @@ Sei $A_V= -\Delta - V(\cdot)$ ein Schr\"odinger-Operator auf $L^2(\mathbb R^N)$,
 0\le V\in L^\infty(\{x:|x|\ge \varepsilon\})
 \end{equation}\label{perturbed}
 f\"ur jedes $\varepsilon>0$. Wie verhalten sich L\"osungen der gest\"orten W\"armeleitungsgleichung 
-\begin{equation}
-\partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
+%\begin{equation}
+%\partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
+%\end{equation}
+\begin{equation}\label{perturbed}
+\begin{cases}
+\partial_t u - A_V u =0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0.
+\end{cases}
 \end{equation}
 F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
 Was passiert, wenn $V$ zu singul\"ar wird?
 
-Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{heat}. \vspace{.25cm}
+Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{perturbed}. \vspace{.25cm}
 \begin{df}
 $u$ ist schwache L\"osung von \eqref{perturbed} falls, f\"ur jedes $T, R>0$, gilt
-\begin{gather}
+\begin{gather}\label{weak}
 u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
 \int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
 \end{gather}
@@ -140,7 +146,7 @@ f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
 
 H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
 
-\begin{thm}[Baras--Goldstein]
+\begin{thm}[\textsc{Baras--Goldstein} \textbf{1984}]
 Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
 \end{thm}
 \begin{proof}[Beweisidee]
@@ -157,23 +163,67 @@ Dann falls $c\le C^*(N)$ k\"onnen wir zum Grenzwert $n\to \infty$ \"ubergehen un
 \section{Das Cabr\'e--Martel Theorem}
 
 Wir definieren den Grundzustand von $-(\Delta +V)$ durch
-\begin{equation}
+\begin{equation}\label{groundstate}
 \lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
 \end{equation}
-X. Cabr\'e und Y. Martel zeigten 1999 den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
-\begin{thm}[Cabr\'e--Martel Theorem]
+X. Cabr\'e und Y. Martel zeigten den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
+\begin{thm}[\textsc{Cabr\'e--Martel} \textbf{1999}]
 Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
 \begin{enumerate}[(i)]
-\item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive Lösung $u\in C([0,\infty), L^2(\mathbb R^N))$, sodass
+\item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive L\"osung $u\in C([0,\infty), L^2(\mathbb R^N))$, sodass
 \begin{equation}
 \|u(t)\|_{L^2(\mathbb R^N)} \le e^{\omega t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0
 \end{equation}
-für ein $\omega\in \mathbb R$.
-\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt für $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive Lösung von \eqref{heat}.
+f\"ur ein $\omega\in \mathbb R$.
+\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt f\"ur $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive L\"osung von \eqref{heat}.
 \end{enumerate}
 \end{thm}
 \begin{proof}
-Betrachte im Folgenden die Lösungen $u_n$ von.  $\Delta + V_n$ 
+%\begin{enumerate}[(i)]
+(i) Betrachte im Folgenden die L\"osungen $u_n$ von
+\begin{equation}\label{cutoff2}
+\begin{cases}
+\partial_t u_n - \Delta u_n - V_n u_n =0, t\ge 0, x\in \mathbb R^N,\\
+u_n(x,0)=u(x,0)=f(x)\ge 0.
+\end{cases}
+\end{equation}
+Nach Theorem \ref{bounded} erzeugt $\Delta + V_n$ eine positive, analytische, stark stetige Halbgruppe $S_n(\cdot)$ auf $L^2(\mathbb R^N)$. Es folgt mit \eqref{duhamel}
+\begin{equation}
+0 \le u_n \le u_{n+1}, \quad n=1,2,3,\ldots
+\end{equation}
+Multiplizieren wir \eqref{cutoff2} mit $u_n$ und integrieren, dann folgt
+\begin{equation}
+\frac{1}{2} \int_{\mathbb R^N} \partial_t (u_n)^2\, \mathrm dx \le - \int_{\mathbb R^N} |\nabla u_n|^2 + \int_{\mathbb R^N} V u_n^2\, \mathrm d\mu.
+\end{equation}
+So erhalten wir mit der Definition von \eqref{groundstate}
+\begin{equation}
+\frac{1}{2} \int_{\mathbb R^N} \partial_t (u_n)^2\, \mathrm dx \le -\lambda_1(\Delta+V) \int_{\mathbb R^n} u_n^2 dx.
+\end{equation}
+Und somit
+\begin{equation}
+\|u_n(t)\|_{L^2(\mathbb R^N)} \le e^{-\lambda_1(\Delta +V) t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0.
+\end{equation}
+Daher folgt die lokal gleichm\"aßige Beschr\"anktheit der zugehörigen Halbgruppen mit
+\begin{equation}
+\|S_n(t)\| \le e^{-\lambda_1(\Delta + V)}
+\end{equation}
+Nach dem Trotter-Neveu-Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert für $u(t) = S(t) u_0\in C([0,T],\mathbb L^2(\mathbb R^N))$, dass dies eine schwache Lösung zu \eqref{perturbed} ist.  
+
+(ii) Angenommen es gäbe eine postive schwache Lösung zu \eqref{perturbed} mit Anfangswert $u_0\ge 0$.  Sei $u_n$ die eindeutige postive Lösung zu \eqref{cutoff2}. Dann gilt das Maximumsprinzip (vgl. Appendix)
+\begin{equation}
+0<u_n \le u.
+\end{equation}
+Mit monotoner Konvergenz folgt, die Existenz eines punktweisen Grenzwerts $u_n(t)\to \tilde u(t), t\ge 0$, die sogenannte milde Lösung des Problems.  
+
+Multiplizieren wir \eqref{cutoff2} mit $\frac{\phi^2}{u_n}$ und integrieren wir, so ergibt sich
+\begin{equation}
+\int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathrm R^N} |\nabla \phi|^2\, \mathrm dx.
+\end{equation}
+Integrieren wir für $t\in (1,\infty)$, so folgt
+\begin{equation}
+(t-1) \int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \int_{\mathbb R^N} \log \left ( \right )
+\end{equation}
+%\end{enumerate}
 \end{proof}
 \appendix
 \section{Appendix}
@@ -188,7 +238,7 @@ f\"ur alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, 
 \|S(t)\|\le M e^{(w+ M\|B\|) t}
 \end{equation}
 f\"ur alle $t\ge 0$. Diese erf\"ullt das \emph{Duhamel-Prinzip}:
-\begin{equation}
+\begin{equation}\label{duhamel}
 S(t) x = T(t) x + \int_0^t T(t-s) B S(s) x \,\mathrm ds
 \end{equation}
 f\"ur alle $t\ge 0$ und $x\in X$. Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) und Analytizit\"at.
@@ -252,3 +302,152 @@ Appl. Anal. 91 (2012), no. 11, 2057-2071.
 
 
 \end{document}
+package{mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{mathdots}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{amsmath}
+%\usepackage{amsfont}
+%\usepackage{amssymb}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{st}[thm]{Satz}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{df}[thm]{Definition}
+\newtheorem{kor}[thm]{Korollar}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{alg}[thm]{Algorithmus}
+
+%\theoremheadertypefont{\color{black}} % Font f\"ur Theorem-Typ (Satz, Definition, etc.)
+\theoremstyle{break}
+
+\newtheorem{nt}[thm]{Bemerkung}
+\newtheorem{ex}[thm]{Beispiel}
+
+\newtheorem*{note}{Bemerkung}
+
+\usepackage{multicol}
+% Margins
+\topmargin=-0.5in
+\evensidemargin=0in
+\oddsidemargin=-0.5in
+\textwidth=7.5in
+\textheight=9.0in
+\headsep=0.5in 
+
+\pagestyle{fancy}
+
+\rhead{Matthias \textsc{Hofmann}} % Top right header
+\lhead{Schr\"odinger mit inversquadratischem Potential\\
+\today}
+\chead{ }
+%\title{}
+
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+
+
+% Oberer Teil der Titelseite:
+
+\textsc{\LARGE Universit\"at Stuttgart}\\[1.5cm]
+
+\textsc{\Large Masterseminar Funktionalanalysis}\\[0.5cm]
+
+
+% Title
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\HRule \\[0.4cm]
+{ \huge \bfseries Schr\"odingeroperatoren mit inversquadratischem Potential}\\[0.4cm]
+
+\HRule \\[1.5cm]
+
+% Author and supervisor
+
+\begin{center} \Large
+Matthias \textsc{Hofmann}
+\end{center}
+
+\hfill
+
+\vfill
+
+% Unterer Teil der Seite
+{\large \today}
+
+\end{center}
+
+\end{titlepage}
+\section{Einf\"uhrung}
+Wir betrachten im Folgenden die W\"armeleitungsgleichung
+\begin{equation}\label{heat}
+\begin{cases}
+\partial_t u - \Delta u =0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0.
+\end{cases}
+\end{equation}
+Dann ist die L\"osung der W\"armeleitungsgleichung eindeutig durch
+\begin{equation}
+u(x,t)=\int_{\mathbb R^N} K(x-y, t) u_0(y) \, \mathrm dy,
+\end{equation}
+wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische L\"osung des Problems \eqref{heat} 
+und
+\begin{equation}
+T(t)\phi:=e^{\Delta t}\phi:=\int_{\mathbb R^N} K(x-y,t) \phi(y)\, \mathrm dy 
+\end{equation}
+definiert eine stark stetige Halbgruppe auf $L^2(\mathbb R^N)$ (vgl. \cite{engel-nagel} Beispiel II.2.12). Sie erh\"alt Positivit\"at, sodass f\"ur $\phi \ge 0$ auch $T(t) \phi \ge 0$, und ist analytisch f\"ur $t>0$.
+
+Sei $A_V= -\Delta - V(\cdot)$ ein Schr\"odinger-Operator auf $L^2(\mathbb R^N)$, sodass
+\begin{equation}
+0\le V\in L^\infty(\{x:|x|\ge \varepsilon\})
+\end{equation}\label{perturbed}
+f\"ur jedes $\varepsilon>0$. Wie verhalten sich L\"osungen der gest\"orten W\"armeleitungsgleichung 
+\begin{equation}
+\partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
+\end{equation}
+F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
+Was passiert, wenn $V$ zu singul\"ar wird?
+
+Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{heat}. \vspace{.25cm}
+\begin{df}
+$u$ ist schwache L\"osung von \eqref{perturbed} falls, f\"ur jedes $T, R>0$, gilt
+\begin{gather}
+u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
+\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
+\end{gather}
+f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
+\end{df}
+
+H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
+
+\begin{thm}[Baras--Goldstein]
+Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
+\end{thm}
+\begin{proof}[Beweisidee]
+Sei $V_n(x)=\inf\{V_c(x), n\}$ das \emph{cutoff}-Potential. Bezeichne $u_n$ die L\"osung von
+\begin{equation}\label{cutoff}
+\begin{cases}
+\partial_t u_n - \Delta u_n - V_n u_n =0, t\ge 0, x\in \mathbb R^N,\\
+u_n(x,0)=u(x,0)=f(x)\ge 0.
+\end{cases}
+\end{equation}
+Dann falls $c\le C^*(N)$ k\"onnen wir zum Grenzwert $n\to \infty$ \"ubergehen und erhalten eine L\"osung.  Die Schwierigkeit liegt im Erhalt der Konvergenz.
+\end{proof}
+
+\section{Das Cabr\'e--Martel Theorem}
+
+Wir definieren den Grundzustand von $-(\Delta +V)$ durch
+\begin{equation}
+\lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
+\end{equation}
+X. Cabr\'e und Y. Martel zeigten 1999 den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
+\begin{thm}[Cabr\'e--Martel Theorem]
+Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
+\begin{enumerate}[(i)]
+\item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive L

@@ -146,7 +146,7 @@ f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
 
 H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
 
-\begin{thm}[\textsc{Baras--Goldstein} \textbf{1984}]
+\begin{thm}[\textsc{Baras--Goldstein} \textbf{1984}]\label{main}
 Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
 \end{thm}
 \begin{proof}[Beweisidee]
@@ -167,15 +167,15 @@ Wir definieren den Grundzustand von $-(\Delta +V)$ durch
 \lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
 \end{equation}
 X. Cabr\'e und Y. Martel zeigten den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
-\begin{thm}[\textsc{Cabr\'e--Martel} \textbf{1999}]
+\begin{thm}[\textsc{Cabr\'e--Martel} \textbf{1999}]\label{martel}
 Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
 \begin{enumerate}[(i)]
 \item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive L\"osung $u\in C([0,\infty), L^2(\mathbb R^N))$, sodass
-\begin{equation}
+\begin{equation}\label{exponential}
 \|u(t)\|_{L^2(\mathbb R^N)} \le e^{\omega t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0
 \end{equation}
 f\"ur ein $\omega\in \mathbb R$.
-\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt f\"ur $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive L\"osung von \eqref{heat}.
+\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt f\"ur $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive L\"osung von \eqref{heat}, die \eqref{exponential}.
 \end{enumerate}
 \end{thm}
 \begin{proof}
@@ -203,28 +203,46 @@ Und somit
 \begin{equation}
 \|u_n(t)\|_{L^2(\mathbb R^N)} \le e^{-\lambda_1(\Delta +V) t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0.
 \end{equation}
-Daher folgt die lokal gleichm\"aÃŸige Beschr\"anktheit der zugehÃ¶rigen Halbgruppen mit
+Daher folgt die lokal gleichm\"a{\ss}ige Beschr\"anktheit der zugeh\"origen Halbgruppen mit
 \begin{equation}
 \|S_n(t)\| \le e^{-\lambda_1(\Delta + V)}
 \end{equation}
-Nach dem Trotter-Neveu-Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert fÃ¼r $u(t) = S(t) u_0\in C([0,T],\mathbb L^2(\mathbb R^N))$, dass dies eine schwache LÃ¶sung zu \eqref{perturbed} ist.  
+Nach dem Trotter-Neveu-Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert f\"ur $u(t) = S(t) u_0\in C([0,T],\mathbb L^2(\mathbb R^N))$, dass dies eine schwache L\"osung zu \eqref{perturbed} ist.  
 
-(ii) Angenommen es gÃ¤be eine postive schwache LÃ¶sung zu \eqref{perturbed} mit Anfangswert $u_0\ge 0$.  Sei $u_n$ die eindeutige postive LÃ¶sung zu \eqref{cutoff2}. Dann gilt das Maximumsprinzip (vgl. Appendix)
-\begin{equation}
+(ii) Angenommen es g\"abe eine postive schwache L\"osung zu \eqref{perturbed} mit Anfangswert $u_0\ge 0$.  Sei $u_n$ die eindeutige postive L\"osung zu \eqref{cutoff2}. Dann gilt das Maximumsprinzip (vgl. Appendix)
+\begin{equation}\label{maximum}
 0<u_n \le u.
 \end{equation}
-Mit monotoner Konvergenz folgt, die Existenz eines punktweisen Grenzwerts $u_n(t)\to \tilde u(t), t\ge 0$, die sogenannte milde LÃ¶sung des Problems.  
+Mit monotoner Konvergenz folgt, die Existenz eines punktweisen Grenzwerts $u_n(t)\to \tilde u(t), t\ge 0$, die sogenannte milde L\"osung des Problems.  
 
 Multiplizieren wir \eqref{cutoff2} mit $\frac{\phi^2}{u_n}$ und integrieren wir, so ergibt sich
 \begin{equation}
 \int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathrm R^N} |\nabla \phi|^2\, \mathrm dx.
 \end{equation}
-Integrieren wir fÃ¼r $t\in (1,\infty)$, so folgt
+Integrieren wir f\"ur $t\in (1,\infty)$, so folgt
 \begin{equation}
-(t-1) \int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \int_{\mathbb R^N} \log \left ( \right )
+(t-1) \int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \int_{\mathbb R^N} \log \left ( \frac{u_n}{u_0} \right )\phi^2\, \mathrm dx + (t-1) \int_{\mathbb R^N}|\nabla \phi|^2\, \mathrm dx
 \end{equation}
+für jedes $t>1$. Lassn wir $n\to \infty$ folgt mit Lebesgue
+\begin{equation}
+\int_{\mathbb R^N} V\phi^2 \, \mathrm d\mu - \int_{\mathbb R^N} |\nabla \phi|^2 \, \mathrm dx \le \frac{1}{t-1} \left [ \int_{\mathbb R^N} \log(\tilde u(t)) \phi^2 \, \mathrm dx -\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right ]
+\end{equation}
+für jedes $t>1$. Mit Jensenscher und Hölderscher Ungleichungen folgt
+\begin{equation}
+\int_{\mathbb R^N} V\phi^2 \, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \le \frac{1}{2(t-1)} \left \{ 2\log(M) + 2\omega t + 2\log\|u_0\|_{L^2(\mathbb R^N)} + 2 \log \|\phi\|_\infty - 2\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}.
+\end{equation}
+Im Grenzwert $t\to \infty$, erhalten wir
+\begin{equation}
+\int_{\mathbb R^N} V\phi^2\, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \le \omega \int_{\mathbb R^N} \phi^2\, \mathrm dx.
+\end{equation}
+Mit Dichtheit von $C_c^\infty(\mathbb R^N)$ in $H_0^1(\mathbb R^N)$ folgt $\lambda_1(\Delta +V) >-\infty$. Ein Widerspruch zur Voraussetzung.
 %\end{enumerate}
 \end{proof}
+\begin{nt}\label{bem}
+Die Bedingung \eqref{exponential} in der Nichtexistenz ist tatsächlich nicht notwendig. Dies hängt mit dem Maximumsprinzip \eqref{maximum} zusammen. In \cite{baras-goldstein} wurde mittels eines Blowup-Arguments gezeigt, dass die Lösungen $u_n(x,t)$ für $t>0$ überall unbeschränkt sind.
+\end{nt}
+\section{Hardy-Ungleichung und das Baras--Goldstein-Theorem}
+Mittels Theorem \ref{martel} in Verbindung mit Bemerkung \ref{bem} können wir das Theorem  \ref{main} beweisen. Tatsächlich hängt die Existenz von Lösungen stark mit der Hardy-Ungleichung zusammen.    
 \appendix
 \section{Appendix}
 \subsection{Halbgruppen bei Beschr\"ankten St\"orungen}

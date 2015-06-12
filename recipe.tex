@@ -175,7 +175,7 @@ Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
 \|u(t)\|_{L^2(\mathbb R^N)} \le e^{\omega t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0
 \end{equation}
 f\"ur ein $\omega\in \mathbb R$.
-\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt f\"ur $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive L\"osung von \eqref{heat}, die \eqref{exponential}.
+\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt f\"ur $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive L\"osung von \eqref{heat}, sodass \eqref{exponential} erfüllt wird.
 \end{enumerate}
 \end{thm}
 \begin{proof}
@@ -223,11 +223,11 @@ Integrieren wir f\"ur $t\in (1,\infty)$, so folgt
 \begin{equation}
 (t-1) \int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \int_{\mathbb R^N} \log \left ( \frac{u_n}{u_0} \right )\phi^2\, \mathrm dx + (t-1) \int_{\mathbb R^N}|\nabla \phi|^2\, \mathrm dx
 \end{equation}
-f�r jedes $t>1$. Lassn wir $n\to \infty$ folgt mit Lebesgue
+für jedes $t>1$. Lassn wir $n\to \infty$ folgt mit Lebesgue
 \begin{equation}
 \int_{\mathbb R^N} V\phi^2 \, \mathrm d\mu - \int_{\mathbb R^N} |\nabla \phi|^2 \, \mathrm dx \le \frac{1}{t-1} \left [ \int_{\mathbb R^N} \log(\tilde u(t)) \phi^2 \, \mathrm dx -\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right ]
 \end{equation}
-f�r jedes $t>1$. Mit Jensenscher und H�lderscher Ungleichungen folgt
+für jedes $t>1$. Mit Jensenscher und Hölderscher Ungleichungen folgt
 \begin{equation}
 \int_{\mathbb R^N} V\phi^2 \, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \le \frac{1}{2(t-1)} \left \{ 2\log(M) + 2\omega t + 2\log\|u_0\|_{L^2(\mathbb R^N)} + 2 \log \|\phi\|_\infty - 2\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}.
 \end{equation}
@@ -239,10 +239,78 @@ Mit Dichtheit von $C_c^\infty(\mathbb R^N)$ in $H_0^1(\mathbb R^N)$ folgt $\lamb
 %\end{enumerate}
 \end{proof}
 \begin{nt}\label{bem}
-Die Bedingung \eqref{exponential} in der Nichtexistenz ist tats�chlich nicht notwendig. Dies h�ngt mit dem Maximumsprinzip \eqref{maximum} zusammen. In \cite{baras-goldstein} wurde mittels eines Blowup-Arguments gezeigt, dass die L�sungen $u_n(x,t)$ f�r $t>0$ �berall unbeschr�nkt sind.
+Die Bedingung \eqref{exponential} in der Nichtexistenz ist tatsächlich nicht notwendig. Dies hängt mit dem Maximumsprinzip \eqref{maximum} zusammen. In \cite{baras-goldstein} wurde mittels eines Blowup-Arguments gezeigt, dass die Lösungen $u_n(x,t)$ für $t>0$ überall und zu allen Zeiten unbeschränkt sind.
 \end{nt}
 \section{Hardy-Ungleichung und das Baras--Goldstein-Theorem}
-Mittels Theorem \ref{martel} in Verbindung mit Bemerkung \ref{bem} k�nnen wir das Theorem  \ref{main} beweisen. Tats�chlich h�ngt die Existenz von L�sungen stark mit der Hardy-Ungleichung zusammen.    
+Mittels Theorem \ref{martel} in Verbindung mit Bemerkung \ref{bem} können wir Theorem  \ref{main} beweisen. Tatsächlich hängt die Existenz von Lösungen stark mit der Hardy-Ungleichung und Optimalität der Konstanten in dieser zusammen.
+\begin{lem}[Hardy-Ungleichung]
+Sei $N\ge 3$. Dann gilt
+\begin{equation}\label{hardy}
+C^*(N) \int_{\mathbb R^N} \frac{\phi^2(x)}{|x|^2}\, \mathrm dx \le \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx, \quad \phi \in H^1(\mathbb R^N).
+\end{equation}
+\end{lem}
+\begin{proof}
+Es genügt die Hardy-Ungleichung für $\phi\in C_c^\infty(\mathbb R^N)$ zu zeigen. Die allgemeine Hardy-Ungleichung folgt durch ein Dichtheitsargument.
+Tatsächlich finden wir eine Folge $\phi_n\to \phi$ in $H^1$ mit $\phi_n \in C_c^\infty(\mathbb R^N)$, die fast überall punktweise konvergiert. Dann folgt mit dem Lemma von Fatou die Ungleichung in allgemeiner Form.
+
+Sei $\phi \in C_c^\infty(\mathbb R^N)$. Es folgt
+\begin{equation}
+\phi(x)=-\int_1^\infty \frac{\mathrm d}{\mathrm dt} \phi(tx) \, \mathrm dt= - \int_1^\infty x \cdot (\nabla \phi(tx))\, \mathrm dt.
+\end{equation}
+Mit der Miskowskischen Integralungleichung folgt
+\begin{equation}
+\left \| \frac{\phi}{|x|} \right \|_{L^2(\mathbb R^N)} \le \int_1^\infty \left \| \nabla \phi(t\cdot) \right \|_{L^2(\mathbb R^N} \, \mathrm dt = \left ( \int_1^\infty t^{-N/2} \, \mathrm dt \right ) \|\nabla \phi\|_{L^2(\mathbb R^N)}=\sqrt{C^*(N)} \|\nabla\phi\|_{L^2(\mathbb R^N)}.
+\end{equation}
+{\it Alternativ:} Für $x\in \mathbb R^N\setminus\{0\}$ folgt
+\begin{equation}
+\operatorname{div} \left ( \frac{\lambda x}{|x|^2} \right ) = \frac{\lambda (N-2)}{|x|^2}
+\end{equation}
+wobei $\lambda>0$ noch frei wählbar sei. 
+
+Sei $\phi \in C_c^\infty(\mathbb R^N\setminus \{0\})$. Multiplizieren wir beide Seiten mit $\phi^2$ und integrieren wir partiell erhalten wir 
+\begin{equation}
+-2\int_{\mathbb R^N} \phi \frac{\lambda x}{|x|^2} \cdot \nabla \phi \, \mathrm dx = \int_{\mathbb R^N} \frac{\phi^2\lambda (N-2)}{|x|^2}\, \mathrm dx.
+\end{equation}
+Mit der Youngschen Ungleichung folgt dann
+\begin{equation}
+\int_{\mathbb R^N} \frac{\phi^2\lambda (N-2)}{|x|^2} \, \mathrm dx \le 2 \int_{\mathbb R^N} \left | \frac{\lambda \phi}{|x|} \right | |\nabla \phi(x)|\, \mathrm dx \le \int_{\mathbb R^N} \left ( \frac{\lambda \phi}{|x|} \right )^2\, \mathrm dx + \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx.
+\end{equation}
+Es folgt somit
+\begin{equation}
+(\lambda(N-2) -\lambda^2)\int_{\mathbb R^N} \frac{\phi^2}{|x|^2}\, \mathrm dx \le \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx.
+\end{equation}
+$\lambda\mapsto \lambda(N-2)-\lambda^2$ nimmt sein Maximum bei $\lambda= \frac{N-2}{2}$ an und es ergibt sich \eqref{hardy}. Die Aussage überträgt sich mit Dichtheit wegen $H^1(\mathbb R^N) = H_0^1(\mathbb R^N\setminus\{0\})$.
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{main}]
+Die Existenz von Lösungen folgt für $c\le C^*(N)$ direkt aus Theorem \ref{martel}, da mit der Hardy-Ungleichung \eqref{hardy} folgt
+\begin{equation}
+\lambda_1(\Delta + \frac{c}{|x|^2})= \inf_{0\neq \phi \in H^1(\mathbb R^N)} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2 \, \mathrm dx - \int_{\mathbb R^N} c \frac{\phi^2}{|x|^2}}{\phi^2} \right )\ge 0.
+\end{equation}
+Sei $c>C^*(N)$. Um die Nichtexistenz von Lösungen zu zeigen, wählen wir für $\frac{2-N}{2}<\gamma <0$ geeignete $\phi_\gamma\in H^1(\mathbb R^N)$, sodass
+\begin{equation}
+\lambda_1(\Delta + \frac{c}{|x|^2})\le \lim_{\gamma \to (\tfrac{2-N}{N})+} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi_\gamma|^2\, \mathrm dx- \int_{\mathbb R^N} c \frac{\phi^2_{\gamma}}{|x|^2}\, \mathrm dx}{\int_{\mathbb R^N} \phi^2_\gamma  \, \mathrm dx} \right )=-\infty.
+\end{equation}
+Die Aussage folgt dann aus Theorem \ref{martel}. Dies zeigt insbesondere die Optimalität der Konstanten $C^*(N)$ in \eqref{hardy}.
+
+Sei also $\phi_\gamma= |x|^\gamma \eta(x)$, wobei $x\in \mathbb R^N$ und $\eta\in C_c^\infty(\mathbb R^N)$, sodass $\eta =1$ auf $B_1(0)$ und $\eta=0$ auf $\mathbb R^N\setminus B_2(0)$.  Es folgt
+\begin{align*}
+\int_{\mathbb R^N} \phi^2_\gamma(x)\, \mathrm dx &= \int_{B_1} |x|^{2\gamma} \, \mathrm dx + \int_{B_2\setminus B_1} |x|^{2\gamma} \eta^2\, \mathrm dx\\
+&\ge \frac{\sigma_{N-1}}{2\gamma+N} + 2^{2\gamma} c_1,\\
+\int_{\mathbb R^N} |\nabla \phi_\gamma|^2(x)\, \mathrm dx &\le \frac{\gamma^2 \sigma_{N-1}}{2\gamma +N-2}+ 2(\gamma^2 c_1+ \| \nabla \eta\|^2_\infty),\\
+\int_{\mathbb R^N} \frac{c\phi_\gamma^2(x)}{|x|^2} \, \mathrm dx &\ge \frac{c\sigma_{N-1}}{2\gamma+N-2} + c 2^{\gamma -2}c_1,
+\end{align*}
+wobei $\sigma_{N-1}$ der Flächeninhalt der Einheitskugel im $\mathbb R^N$ ist und $c_1=\int_{B_2 \setminus B_1} \eta^2(x)\, \mathrm dx$. Damit folgt
+\begin{equation}
+\lambda_1(\Delta + \frac{c}{|x|^2}) \le \lim_{\gamma \to (\tfrac{2-N}{N})+} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi_\gamma|^2\, \mathrm dx- \int_{\mathbb R^N} c \frac{\phi^2_{\gamma}}{|x|^2}\, \mathrm dx}{\int_{\mathbb R^N} \phi^2_\gamma  \, \mathrm dx} \right )=-\infty,
+\end{equation}
+was den Beweis abschließt.
+
+
+\end{proof}
+
+
+
 \appendix
 \section{Appendix}
 \subsection{Halbgruppen bei Beschr\"ankten St\"orungen}
@@ -266,6 +334,9 @@ Wir verweisen auf \cite{engel-nagel} Satz III.1.3 und Korollar III.1.7. Die Posi
 \end{proof}
 
 \begin{thebibliography}{tief}
+\bibitem{arendt} Arendt, Wolfgang; Batty, Charles J. K.; Hieber, Matthias; Neubrander, Frank:
+{\it Vector-valued Laplace transforms and Cauchy problems}.
+Monographs in Mathematics, 96. Birkhäuser Verlag, Basel, 2001. xii+523 pp.
 \bibitem{baras-goldstein} Baras, Pierre; Goldstein, Jerome A:
 {\it The heat equation with a singular potential}.
 Trans. Amer. Math. Soc. 284 (1984), no. 1, 121-139.

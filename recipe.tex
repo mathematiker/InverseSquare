@@ -1,4 +1,5 @@
 \documentclass[11pt]{article}
+\usepackage[a4paper, scale=0.76]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel} 	% Deutsche Sprachunterst\"utzung f\"ur Silbentrennung, etc.
 \usepackage[T1]{fontenc}		% Erlaubt das kopieren/suchen von/nach Umlauten im pdf-Dokument
@@ -45,14 +46,14 @@
 
 \newtheorem*{note}{Bemerkung}
 
-\usepackage{multicol}
+%\usepackage{multicol}
 % Margins
-\topmargin=-0.5in
-\evensidemargin=0in
-\oddsidemargin=-0.5in
-\textwidth=7.5in
-\textheight=9.0in
-\headsep=0.5in 
+%\topmargin=-2in
+%\evensidemargin=1in
+%\oddsidemargin=1in
+%\textwidth=7.5in
+%\textheight=9.0in
+%\headsep=0.5in 
 
 \pagestyle{fancy}
 
@@ -167,6 +168,9 @@ Wir definieren den Grundzustand von $-(\Delta +V)$ durch
 \lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
 \end{equation}
 X. Cabr\'e und Y. Martel zeigten den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
+
+\vspace{.25cm}
+
 \begin{thm}[\textsc{Cabr\'e--Martel} \textbf{1999}]\label{martel}
 Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
 \begin{enumerate}[(i)]
@@ -187,8 +191,8 @@ f\"ur ein $\omega\in \mathbb R$.
 u_n(x,0)=u(x,0)=f(x)\ge 0.
 \end{cases}
 \end{equation}
-Nach Theorem \ref{bounded} erzeugt $\Delta + V_n$ eine positive, analytische, stark stetige Halbgruppe $S_n(\cdot)$ auf $L^2(\mathbb R^N)$. Es folgt mit \eqref{duhamel}
-\begin{equation}
+Nach Theorem \ref{bounded} erzeugt $\Delta + V_n$ eine positive, analytische, stark stetige Halbgruppe $S_n(\cdot)$ auf $L^2(\mathbb R^N)$. Es folgt mit \eqref{duhamel} (vgl. Appendix)
+\begin{equation}\label{beh1}
 0 \le u_n \le u_{n+1}, \quad n=1,2,3,\ldots
 \end{equation}
 Multiplizieren wir \eqref{cutoff2} mit $u_n$ und integrieren, dann folgt
@@ -207,7 +211,7 @@ Daher folgt die lokal gleichm\"a{\ss}ige Beschr\"anktheit der zugeh\"origen Halb
 \begin{equation}
 \|S_n(t)\| \le e^{-\lambda_1(\Delta + V)}
 \end{equation}
-Nach dem Trotter-Neveu-Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert f\"ur $u(t) = S(t) u_0\in C([0,T],\mathbb L^2(\mathbb R^N))$, dass dies eine schwache L\"osung zu \eqref{perturbed} ist.  
+Nach dem Trotter--Neveu--Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert f\"ur $u(t) = S(t) u_0\in C([0,T],\mathbb L^2(\mathbb R^N))$, dass dies eine schwache L\"osung zu \eqref{perturbed} ist.  
 
 (ii) Angenommen es g\"abe eine postive schwache L\"osung zu \eqref{perturbed} mit Anfangswert $u_0\ge 0$.  Sei $u_n$ die eindeutige postive L\"osung zu \eqref{cutoff2}. Dann gilt das Maximumsprinzip (vgl. Appendix)
 \begin{equation}\label{maximum}
@@ -228,9 +232,9 @@ für jedes $t>1$. Lassn wir $n\to \infty$ folgt mit Lebesgue
 \int_{\mathbb R^N} V\phi^2 \, \mathrm d\mu - \int_{\mathbb R^N} |\nabla \phi|^2 \, \mathrm dx \le \frac{1}{t-1} \left [ \int_{\mathbb R^N} \log(\tilde u(t)) \phi^2 \, \mathrm dx -\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right ]
 \end{equation}
 für jedes $t>1$. Mit Jensenscher und Hölderscher Ungleichungen folgt
-\begin{equation}
-\int_{\mathbb R^N} V\phi^2 \, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \le \frac{1}{2(t-1)} \left \{ 2\log(M) + 2\omega t + 2\log\|u_0\|_{L^2(\mathbb R^N)} + 2 \log \|\phi\|_\infty - 2\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}.
-\end{equation}
+\begin{align*}
+\int_{\mathbb R^N} V\phi^2 \, \mathrm dx &- \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \\ &\le  \frac{1}{2(t-1)} \left \{ 2\log(M) + 2\omega t + 2\log\|u_0\|_{L^2(\mathbb R^N)} + 2 \log \|\phi\|_\infty - 2\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}.
+\end{align*}
 Im Grenzwert $t\to \infty$, erhalten wir
 \begin{equation}
 \int_{\mathbb R^N} V\phi^2\, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \le \omega \int_{\mathbb R^N} \phi^2\, \mathrm dx.
@@ -308,35 +312,127 @@ was den Beweis abschließt.
 
 
 \end{proof}
-
-
-
+\begin{nt}
+Theorem \ref{martel} wurde in \cite{goldstein-goldstein-rhandi} für gestörte Kolmogorov-Gleichungen
+\begin{equation}\label{perturbed}
+\begin{cases}
+\partial_t u - (\Delta+V) u +\nabla \rho \cdot \nabla u=0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0
+\end{cases}
+\end{equation}
+studiert und für $\rho(x)=\frac{1}{2} Bx\cdot x$ beschreibt dies gerade einen \textsc{Ornstein--Uhlenbeck}-Prozess.  Für solche wurde ein Analogon zum Baras--Goldstein-Theorem zur Existenz von Lösung durch den Beweis einer gewichteten Hardy-Ungleichung gezeigt.
+\end{nt}
 \appendix
 \section{Appendix}
-\subsection{Halbgruppen bei Beschr\"ankten St\"orungen}
+In diesem Teil geben wir einige relevante Aussagen mit Referenz an.  Wir beginnen mit einem elementaren Satz aus der Störungstheorie:
+
+\vspace{.25cm}
+
 \begin{thm}\label{bounded}
 Sei $(A, D(A))$ erzeugt von einer stark stetigen Halbgruppe $(T(t))_{t\ge 0}$ auf einem Banachraum $X$, sodass
 \begin{equation}
 \|T(t)\|\le M e^{\omega t}
 \end{equation}
-f\"ur alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, dann erzeugt $C:=A+B$ mit $D(C)=D(A)$ eine stark stetige Halbgruppe mit
+f\"ur alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, dann erzeugt $C:=A+B$ mit $D(C)=D(A)$ eine stark stetige Halbgruppe $(S(t))_{t\ge 0}$ mit
 \begin{equation}
 \|S(t)\|\le M e^{(w+ M\|B\|) t}
 \end{equation}
-f\"ur alle $t\ge 0$. Diese erf\"ullt das \emph{Duhamel-Prinzip}:
+f\"ur alle $t\ge 0$. Diese erf\"ullt das \emph{\textsc{Duhamel}-Prinzip}:
 \begin{equation}\label{duhamel}
 S(t) x = T(t) x + \int_0^t T(t-s) B S(s) x \,\mathrm ds
 \end{equation}
-f\"ur alle $t\ge 0$ und $x\in X$. Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) und Analytizit\"at.
+f\"ur alle $t\ge 0$ und $x\in X$. 
+Außerdem lässt sich diese schreiben durch die stark konvergente \textsc{Dyson--Phillips}-Reihe
+\begin{equation}
+S(t)=\sum_{n=0}^\infty \tilde S_n(t),
+\end{equation}
+wobei $\tilde S_0(t):=T(t)$ und
+\begin{equation}
+\tilde S_{n+1} := \int_0^t T(t-s) B\tilde S_n(s)\, \mathrm dx.
+\end{equation}
+
+Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) und Analytizit\"at.
 \end{thm}
 \begin{proof}
-Wir verweisen auf \cite{engel-nagel} Satz III.1.3 und Korollar III.1.7. Die Positivit\"at der Halbgruppe folgt aus \cite{engel-nagel} Korollar VI.2.4 und die Analytiz\"at nach Theorem III.2.10. 
+Wir verweisen auf \cite{engel-nagel} Satz III.1.3, Korollar III.1.7 und Satz III.1.10. 
+%Die Positivit\"at der Halbgruppe folgt aus \cite{engel-nagel} Korollar VI.2.4 und die Analytiz\"at nach Theorem III.2.10. 
 \end{proof}
+
+
+Sei wie vorher seien $u_n$ die Lösungen von \eqref{cutoff2}. Dann folgt in direkter Konsequenz zu vorigem Theorem $u_n\ge e^{\Delta t} u_0> 0$ für $t>0$. So folgt mit \eqref{duhamel} 
+\begin{equation}
+u_{n+1}(t) -u_n(t)= \int_0^t e^{\Delta + V_n} (V_{n+1}-V_n) u_{n}(s)\, \mathrm ds\ge 0.
+\end{equation}
+Also folgt
+\begin{equation}
+0 <u_n \le u_{n+1}.
+\end{equation}
+Als nächstes wollen wir das Maximumsprinzip 
+\begin{equation}
+0<u_n(t)\le u(t)
+\end{equation}
+zeigen.  Mit der Definition von schwachen Lösungen folgt
+\begin{equation}
+\int_0^T \int_{\mathbb R^N} (u_n-u) (-\partial_t \phi - \Delta \phi - V_n \phi) \, \mathrm dx \, \mathrm dt = \int_0^T \int_{\mathbb R^N} (V_n -V) u\phi \, \mathrm dx \, \mathrm dt \le 0
+\end{equation} 
+für alle $0\le \phi \in H_0^2(B_R \times [0, T))$ und $T,R>0$.  Sei $0 \le \psi \in C_c^\infty(B_R\times (0,T))$, so können wir $0 \le  \phi$ derart wählen, dass 
+\begin{equation}
+\begin{cases}
+\partial_t \phi + \Delta \phi + V_n \phi = - \psi.\\
+\phi\big|_{\partial B_R \times (0,T)} =0,\\
+\phi(\cdot ,T)=0, \quad \phi(\cdot, t)
+\end{cases}
+\end{equation}
+Wir können 
+Diese ist äquivalent zur Existenz von $\tilde \phi(x,t)=\phi(x,T-t)$ mit
+\begin{equation}
+\begin{cases}
+\partial_t \tilde \phi(x,t) = \Delta \tilde \phi(x,t)+V_n \tilde \phi(x,t)+\psi(x,t),\\
+\tilde \phi\big|_{\partial B_R \times (0,T)} =0,\\
+\tilde \phi(\cdot,0)=0
+\end{cases}
+\end{equation}
+die aus der Existenz von Lösungen in diesem Raum zurückführen sind. Dafür kann man analog wie in \cite{arendt} Theorem 6.2.8 verfahren oder allgemeiner auf Theorem 2.2.5 zurückgreifen.
+und somit folgt 
+\begin{equation}
+0<u_n \le u, \quad t\ge 0.
+\end{equation}
+
+Als Letztes wollen wir einen Beweis zu einer Variation des \textsc{Trotter--Never--Kato}-Theorems angeben.  Der Folgende mit Verallgemeinerung ist zum Beispiel zu finden als Proposition 3.6 in \cite{arendt-goldstein}, der aber scheinbar von H. Voigt stammt.
+
+\vspace{.25cm}
+
+\begin{thm}[\textsc{Trotter--Neveu--Kato}]
+Seien $T_k$ stark stetige, quasikontraktive Halbgruppe  auf $L^2$, so dass $0\le T_k(t) \le T_{k+1}(t)$ und
+\begin{equation}
+\|T_k(t)\|\le e^{\omega t},\quad \omega \in \mathbb R.
+\end{equation}  
+Dann existiert $T(t)f=\lim_{k\to \infty} T_k(t)f$ für alle $f\in L^2, t\ge 0$, und definiert eine stark stetige Halbgruppe $T$ auf $L^2$. 
+\end{thm}
+
+\begin{proof}
+Die Existenz des starken Grenzwerts folgt mit monotoner Konvergenz.  Wegen Kontraktivität ist $T(t)\in \mathcal L(L^2)$ und $T(t+s)=T(t) T(s)$ für $t,s\ge 0$.  Es bleibt starke Stetigkeit des Grenzwerts zu zeigen.  Sei $t_n\downarrow 0$, $0\le f\in L^2$.  Dann ist zu zeigen $f_n:=T(t_n)f\to f$ wenn $n\to \infty$. Sei $g_n:=T_1(t_n) f$. Dann $0\le g_n \le f_n$ und $g_n \to f$ wenn $n\to \infty$. Weiter folgt $\|g_n\|_{L^2} \le \|f\|_{L^2}$.
+
+Es genügt zu zeigen, dass jede Teilfolge von $(f_n)$ eine konvergente Teilfolge besitzt.  OBdA können wir annehmen, folgt dass $f_n$ schwach gegen $h\in L^p$ konvergiert (sonst wähle eine Teilfolge).  Da $g_n \le f_n$ und $g_n \to f$ folgt, dass $f\le h$.  Damit ergibt sich $\| f\|_{L^p}\le \|h\|_{L^p}$. 
+Insbesondere $g_n \to f$ in $L^2$ und wir folgern
+\begin{equation}
+\| h\|_{L^2(\mathbb R^n)} =\| \lim_{n\to \infty} f_n\|_{L^2(\mathbb R^n)} \le \liminf_{n\to \infty} \| f_n\|_{L^2(\mathbb R^n}\le \liminf_{n\to \infty} e^{\omega t_n} \|f\|_{L^2(\mathbb R^n)}=\| f\|_{L^2(\mathbb R^n)}
+\end{equation}
+und daher $f_n\to f$ in $L^2(\mathbb R^n)$.
+\end{proof}
+ 
+
+
+
+
 
 \begin{thebibliography}{tief}
 \bibitem{arendt} Arendt, Wolfgang; Batty, Charles J. K.; Hieber, Matthias; Neubrander, Frank:
 {\it Vector-valued Laplace transforms and Cauchy problems}.
 Monographs in Mathematics, 96. Birkhäuser Verlag, Basel, 2001. xii+523 pp.
+\bibitem{arendt-goldstein} Arendt, Wolfgang; Goldstein, Gisèle Ruiz; Goldstein, Jerome A.: 
+{\it Outgrowths of Hardy's inequality}. Recent advances in differential equations and mathematical physics, 51–68,
+Contemp. Math., 412, Amer. Math. Soc., Providence, RI, 2006.
 \bibitem{baras-goldstein} Baras, Pierre; Goldstein, Jerome A:
 {\it The heat equation with a singular potential}.
 Trans. Amer. Math. Soc. 284 (1984), no. 1, 121-139.
@@ -347,6 +443,12 @@ C. R. Acad. Sci. Paris S\'er. I Math. 329 (1999), no. 11, 973-978.
 {\it A short course on operator semigroups}. Universitext. Springer, New York, 2006.
 \bibitem{goldstein-rhandi} Goldstein, G. R.; Goldstein, J. A.; Rhandi, A.: {\it Weighted Hardy's inequality and the Kolmogorov equation perturbed by an inverse-square potential}.
 Appl. Anal. 91 (2012), no. 11, 2057-2071. 
+\bibitem{lady} Lady\v{z}enskaja, O. A.; Solonnikov, V. A.; Ural'ceva, N. N.
+{\it Linear and quasilinear equations of parabolic type}. (Russian)
+Translated from the Russian by S. Smith. Translations of Mathematical Monographs, Vol. 23 American Mathematical Society, Providence, R.I. 1968 xi+648 pp. 
+\bibitem{lorenzi} Lorenzi, Luca; Bertoldi, Marcello
+{\it Analytical methods for Markov semigroups}.
+Pure and Applied Mathematics (Boca Raton), 283. Chapman \& Hall/CRC, Boca Raton, FL, 2007. xxxii+526 pp.
 \bibitem{rhandi} Rhandi, Abdelaziz: {\it Heat and Ornstein-Uhlenbeck semigroups perturbed by an inverse-square potential}. 
                      Unpublished, 2015.
 \end{thebibliography} 

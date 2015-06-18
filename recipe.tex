@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[11pt,twoside,a4paper]{article}
 \usepackage[a4paper, scale=0.76]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel} 	% Deutsche Sprachunterst\"utzung f\"ur Silbentrennung, etc.
@@ -64,6 +64,7 @@
 %\title{}
 
 \begin{document}
+\cleardoublepage
 \begin{titlepage}
 
 \begin{center}
@@ -99,6 +100,10 @@ Matthias \textsc{Hofmann}
 \end{center}
 
 \end{titlepage}
+
+\thispagestyle{empty}
+\mbox{}\newpage
+\addtocounter{page}{-2}
 \section{Einf\"uhrung}
 Wir betrachten im Folgenden die W\"armeleitungsgleichung
 \begin{equation}\label{heat}
@@ -111,7 +116,7 @@ Dann ist die L\"osung der W\"armeleitungsgleichung eindeutig durch
 \begin{equation}
 u(x,t)=\int_{\mathbb R^N} K(x-y, t) u_0(y) \, \mathrm dy,
 \end{equation}
-wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische L\"osung des Problems \eqref{heat} 
+gegeben ist, wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische L\"osung des Problems \eqref{heat} 
 und
 \begin{equation}
 T(t)\phi:=e^{\Delta t}\phi:=\int_{\mathbb R^N} K(x-y,t) \phi(y)\, \mathrm dy 
@@ -132,7 +137,7 @@ f\"ur jedes $\varepsilon>0$. Wie verhalten sich L\"osungen der gest\"orten W\"ar
 u(x,0)=u_0 \ge 0.
 \end{cases}
 \end{equation}
-F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
+F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
 Was passiert, wenn $V$ zu singul\"ar wird?
 
 Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{perturbed}. \vspace{.25cm}
@@ -209,15 +214,15 @@ Und somit
 \end{equation}
 Daher folgt die lokal gleichm\"a{\ss}ige Beschr\"anktheit der zugeh\"origen Halbgruppen mit
 \begin{equation}
-\|S_n(t)\| \le e^{-\lambda_1(\Delta + V)}
+\|S_n(t)\| \le e^{-\lambda_1(\Delta + V)}t
 \end{equation}
-Nach dem Trotter--Neveu--Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert f\"ur $u(t) = S(t) u_0\in C([0,T],\mathbb L^2(\mathbb R^N))$, dass dies eine schwache L\"osung zu \eqref{perturbed} ist.  
+Nach dem Trotter--Neveu--Kato Theorem (vgl. Appendix) folgt die Existenz einer stark stetigen Halbgruppe $S(t)$, sodass $S_n(t) \to S(t), t\ge 0$ im staken Sinne konvergiert.  Dann folgt im Grenzwert f\"ur $u(t) = S(t) u_0\in C([0,T],L^2(\mathbb R^N))$, dass dies eine schwache L\"osung zu \eqref{perturbed} ist.  
 
-(ii) Angenommen es g\"abe eine postive schwache L\"osung zu \eqref{perturbed} mit Anfangswert $u_0\ge 0$.  Sei $u_n$ die eindeutige postive L\"osung zu \eqref{cutoff2}. Dann gilt das Maximumsprinzip (vgl. Appendix)
+(ii) Angenommen es g\"abe eine postive schwache L\"osung zu \eqref{perturbed} mit Anfangswert $u_0\ge 0$.  Sei $u_n$ die eindeutige positive L\"osung zu \eqref{cutoff2}. Dann gilt das Maximumsprinzip (vgl. Appendix)
 \begin{equation}\label{maximum}
 0<u_n \le u.
 \end{equation}
-Mit monotoner Konvergenz folgt, die Existenz eines punktweisen Grenzwerts $u_n(t)\to \tilde u(t), t\ge 0$, die sogenannte milde L\"osung des Problems.  
+Mit monotoner Konvergenz folgt die Existenz eines punktweisen Grenzwerts $u_n(t)\to \tilde u(t), t\ge 0$, die sogenannte milde L\"osung des Problems.  
 
 Multiplizieren wir \eqref{cutoff2} mit $\frac{\phi^2}{u_n}$ und integrieren wir, so ergibt sich
 \begin{equation}
@@ -233,7 +238,8 @@ für jedes $t>1$. Lassn wir $n\to \infty$ folgt mit Lebesgue
 \end{equation}
 für jedes $t>1$. Mit Jensenscher und Hölderscher Ungleichungen folgt
 \begin{align*}
-\int_{\mathbb R^N} V\phi^2 \, \mathrm dx &- \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \\ &\le  \frac{1}{2(t-1)} \left \{ 2\log(M) + 2\omega t + 2\log\|u_0\|_{L^2(\mathbb R^N)} + 2 \log \|\phi\|_\infty - 2\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}.
+\int_{\mathbb R^N} V\phi^2 \, \mathrm dx &- \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx \\
+ &\le  \frac{1}{2(t-1)} \left \{ 2\log(M) + 2\omega t + 2\log\|u_0\|_{L^2(\mathbb R^N)} + 2 \log \|\phi\|_\infty - 2\int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}.
 \end{align*}
 Im Grenzwert $t\to \infty$, erhalten wir
 \begin{equation}
@@ -313,14 +319,14 @@ was den Beweis abschließt.
 
 \end{proof}
 \begin{nt}
-Theorem \ref{martel} wurde in \cite{goldstein-goldstein-rhandi} für gestörte Kolmogorov-Gleichungen
-\begin{equation}\label{perturbed}
+Theorem \ref{martel} wurde in \cite{goldstein-rhandi} für gestörte Kolmogorov-Gleichungen
+\begin{equation}%\label{perturbed}
 \begin{cases}
 \partial_t u - (\Delta+V) u +\nabla \rho \cdot \nabla u=0, t\ge 0, x\in \mathbb R^N,\\
 u(x,0)=u_0 \ge 0
 \end{cases}
 \end{equation}
-studiert und für $\rho(x)=\frac{1}{2} Bx\cdot x$ beschreibt dies gerade einen \textsc{Ornstein--Uhlenbeck}-Prozess.  Für solche wurde ein Analogon zum Baras--Goldstein-Theorem zur Existenz von Lösung durch den Beweis einer gewichteten Hardy-Ungleichung gezeigt.
+studiert und für $\rho(x)=\frac{1}{2} Bx\cdot x$ beschreibt dies gerade einen \textsc{Ornstein--Uhlenbeck}-Prozess.  Für solche wurde in \cite{goldstein-rhandi} ein Analogon zum Baras--Goldstein-Theorem zur Existenz von Lösung durch den Beweis einer gewichteten Hardy-Ungleichung gezeigt.
 \end{nt}
 \appendix
 \section{Appendix}
@@ -392,13 +398,13 @@ Diese ist äquivalent zur Existenz von $\tilde \phi(x,t)=\phi(x,T-t)$ mit
 \tilde \phi(\cdot,0)=0
 \end{cases}
 \end{equation}
-die aus der Existenz von Lösungen in diesem Raum zurückführen sind. Dafür kann man analog wie in \cite{arendt} Theorem 6.2.8 verfahren oder allgemeiner auf Theorem 2.2.5 zurückgreifen.
+die aus der Existenz von Lösungen von diesen Problemen zurückzuführen sind. Dafür kann man analog wie in \cite{arendt} Theorem 6.2.8 verfahren oder allgemeiner auf \cite{lady} Theorem 2.2.5 zurückgreifen.
 und somit folgt 
 \begin{equation}
 0<u_n \le u, \quad t\ge 0.
 \end{equation}
 
-Als Letztes wollen wir einen Beweis zu einer Variation des \textsc{Trotter--Never--Kato}-Theorems angeben.  Der Folgende mit Verallgemeinerung ist zum Beispiel zu finden als Proposition 3.6 in \cite{arendt-goldstein}, der aber scheinbar von H. Voigt stammt.
+Als Letztes wollen wir einen Beweis zu einer Variation des \textsc{Trotter--Never--Kato}-Theorems angeben.  Der Folgende mit Verallgemeinerung ist zum Beispiel für kontraktive Halbgruppen zu finden als Proposition 3.6 in \cite{arendt-goldstein}, der aber aus \cite{voigt} stammt.
 
 \vspace{.25cm}
 
@@ -411,12 +417,12 @@ Dann existiert $T(t)f=\lim_{k\to \infty} T_k(t)f$ für alle $f\in L^2, t\ge 0$, 
 \end{thm}
 
 \begin{proof}
-Die Existenz des starken Grenzwerts folgt mit monotoner Konvergenz.  Wegen Kontraktivität ist $T(t)\in \mathcal L(L^2)$ und $T(t+s)=T(t) T(s)$ für $t,s\ge 0$.  Es bleibt starke Stetigkeit des Grenzwerts zu zeigen.  Sei $t_n\downarrow 0$, $0\le f\in L^2$.  Dann ist zu zeigen $f_n:=T(t_n)f\to f$ wenn $n\to \infty$. Sei $g_n:=T_1(t_n) f$. Dann $0\le g_n \le f_n$ und $g_n \to f$ wenn $n\to \infty$. Weiter folgt $\|g_n\|_{L^2} \le \|f\|_{L^2}$.
+Die Existenz des starken Grenzwerts folgt mit monotoner Konvergenz und $T(t)\in \mathcal L(L^2)$ und $T(t+s)=T(t) T(s)$ für $t,s\ge 0$.  Es bleibt starke Stetigkeit des Grenzwerts zu zeigen.  Sei $t_n\downarrow 0$, $0\le f\in L^2$.  Dann ist zu zeigen: $f_n:=T(t_n)f\to f$ wenn $n\to \infty$. Sei $g_n:=T_1(t_n) f$. Dann $0\le g_n \le f_n$ und $g_n \to f$ wenn $n\to \infty$. Weiter folgt $\|g_n\|_{L^2} \le \|f\|_{L^2}$.
 
 Es genügt zu zeigen, dass jede Teilfolge von $(f_n)$ eine konvergente Teilfolge besitzt.  OBdA können wir annehmen, folgt dass $f_n$ schwach gegen $h\in L^p$ konvergiert (sonst wähle eine Teilfolge).  Da $g_n \le f_n$ und $g_n \to f$ folgt, dass $f\le h$.  Damit ergibt sich $\| f\|_{L^p}\le \|h\|_{L^p}$. 
 Insbesondere $g_n \to f$ in $L^2$ und wir folgern
 \begin{equation}
-\| h\|_{L^2(\mathbb R^n)} =\| \lim_{n\to \infty} f_n\|_{L^2(\mathbb R^n)} \le \liminf_{n\to \infty} \| f_n\|_{L^2(\mathbb R^n}\le \liminf_{n\to \infty} e^{\omega t_n} \|f\|_{L^2(\mathbb R^n)}=\| f\|_{L^2(\mathbb R^n)}
+\| h\|_{L^2(\mathbb R^n)}  \le \liminf_{n\to \infty} \| f_n\|_{L^2(\mathbb R^n}\le \liminf_{n\to \infty} e^{\omega t_n} \|f\|_{L^2(\mathbb R^n)}=\| f\|_{L^2(\mathbb R^n)}
 \end{equation}
 und daher $f_n\to f$ in $L^2(\mathbb R^n)$.
 \end{proof}
@@ -451,6 +457,9 @@ Translated from the Russian by S. Smith. Translations of Mathematical Monographs
 Pure and Applied Mathematics (Boca Raton), 283. Chapman \& Hall/CRC, Boca Raton, FL, 2007. xxxii+526 pp.
 \bibitem{rhandi} Rhandi, Abdelaziz: {\it Heat and Ornstein-Uhlenbeck semigroups perturbed by an inverse-square potential}. 
                      Unpublished, 2015.
+\bibitem{voigt} Voigt, Jürgen:
+{\it Absorption semigroups, their generators, and Schrödinger semigroups}.
+J. Funct. Anal. 67 (1986), no. 2, 167–205. 
 \end{thebibliography} 
 
 

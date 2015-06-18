@@ -1,0 +1,339 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel} 	% Deutsche Sprachunterst\"utzung f\"ur Silbentrennung, etc.
+\usepackage[T1]{fontenc}		% Erlaubt das kopieren/suchen von/nach Umlauten im pdf-Dokument
+		% Encoding der tex-Dateien, erlaubt direkte Eingabe von Sonderzeichen
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{mathdots}
+
+
+\newtheorem{thm}{Theorem}
+\newtheorem{st}[thm]{Satz}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{df}[thm]{Definition}
+\newtheorem{kor}[thm]{Korollar}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{alg}[thm]{Algorithmus}
+
+%\theoremheadertypefont{\color{black}} % Font f\"ur Theorem-Typ (Satz, Definition, etc.)
+\theoremstyle{break}
+
+\newtheorem{nt}[thm]{Bemerkung}
+\newtheorem{ex}[thm]{Beispiel}
+
+%\usepackage{multicol}
+
+\usepackage{multimedia}
+\usepackage{graphicx}
+\setbeamercovered{transparent}
+\colorlet{orange}{red!70!yellow}% mes petites couleurs que j'aime bien
+\colorlet{mauve}{blue!70!red}
+\colorlet{brouge}{red!70!blue}
+\mode<presentation>
+\usetheme{Madrid}
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{question}[theorem]{Question}
+
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\Q{{\mathbb Q}}
+\def\R{{\mathbb R}}
+\def\C{{\mathbb C}}
+\def\T{{\mathbb T}}
+
+% probability notations
+
+\newcommand{\E}{{\mathbb E}}
+\renewcommand{\P}{{\mathbb P}}
+\newcommand{\F}{{\mathcal F}}
+\newcommand{\G}{{\mathcal G}}
+\renewcommand{\H}{{\mathcal H}}
+
+% greek letters
+
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\newcommand{\g}{\gamma}
+\renewcommand{\d}{\delta}
+\newcommand{\e}{\varepsilon}
+\renewcommand{\l}{\lambda}
+\newcommand{\om}{\omega}
+\renewcommand{\O}{\Omega}
+\newcommand{\Fub}{{\rm Fub}}
+\newcommand{\Ito}{{\hbox{\rm It\^o}}}
+
+% spaces
+
+\renewcommand{\L}{L^2(0,1)}
+\newcommand{\LH}{L^2(0,1;H)}
+\renewcommand{\gg}{\g(\L,E)}
+\newcommand{\ggH}{\g(\LH,E)}
+
+ \newcommand{\inv}[1]{\frac{1}{#1}}
+ \newcommand{\eps}[0]{\varepsilon}
+ \newcommand{\sref}[1]{(\ref{#1})}
+ \newcommand{\pw}[0]{_{\textrm{PW}}}
+
+\renewcommand{\Re}{\hbox{\rm Re}\,}
+\renewcommand{\Im}{\hbox{\rm Im}\,}
+\newcommand{\D}{{\mathcal D}}
+\newcommand{\calL}{{\mathcal L}}
+\newcommand{\n}{\Vert}
+\newcommand{\one}{{{\bf 1}}}
+\newcommand{\embed}{\hookrightarrow}
+\newcommand{\s}{^*}
+\newcommand{\lb}{\langle}
+\newcommand{\rb}{\rangle}
+\newcommand{\dps}{\displaystyle}
+\renewcommand{\SS}{{\bf S}}
+\newcommand{\limn}{\lim_{n\to\infty}}
+\newcommand{\limk}{\lim_{k\to\infty}}
+\newcommand{\limj}{\lim_{j\to\infty}}
+\newcommand{\sumn}{\sum_{n\ge 1}}
+\newcommand{\sumk}{\sum_{k\ge 1}}
+\newcommand{\sumj}{\sum_{j\ge 1}}
+\newcommand{\sumnN}{\sum_{n=1}^N}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\LRa}{\Leftrightarrow}
+\newcommand{\da}{\downarrow}
+\newcommand{\wh}{\widehat}
+\newcommand{\supp}{\text{\rm supp\,}}
+\newcommand{\nn}{|\!|\!|}
+\newcommand{\Se}{{\mathbb S}}
+\newcommand{\Ae}{{\mathbb A}}
+
+\newcommand{\umd}{\textsc{umd} }
+
+%
+\newcommand{\red}{\color{red}}
+\newcommand{\green}{\color{green}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\black}{\color{black}}
+
+
+\newcommand{\imp}[1]{#1} %\hfill$\bigstar$}
+\newcommand{\journal}[1]{\textit{#1}}
+\newcommand{\book}[1]{\textit{#1}}
+\newcommand{\volume}[1]{\textbf{#1}}%{Vol.~#1}%
+\newcommand{\name}[1]{{#1}}
+\newcommand{\sign}{\rm sign\ }
+\begin{document}
+\title[Schrödinger-Operatoren]{Schrödinger-Operatoren mit inversquadratischem Potential} 
+\author[\textsc{Hofmann}]{\textcolor{blue}{Matthias \textsc{Hofmann}.\\ \ \\
+Masterseminar Funktionalanalysis
+}}
+ \date{Universität Stuttgart\\ Juni 2015} 
+ \begin{frame}
+\titlepage	
+\end{frame}
+
+\begin{frame}{Gliederung}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+\section{Einleitung}
+\begin{frame}{Die Wärmegleichung}
+Wir betrachten im Folgenden die W\"armeleitungsgleichung
+\begin{equation}\label{heat}
+\begin{cases}
+\partial_t u - \Delta u =0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0.
+\end{cases}
+\end{equation} \pause
+Dann ist die L\"osung der W\"armeleitungsgleichung eindeutig durch
+\begin{equation}
+u(x,t)=\int_{\mathbb R^N} K(x-y, t) u_0(y) \, \mathrm dy,
+\end{equation}
+wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. \pause Dann ist $u(x,t)$ die klassische L\"osung des Problems \eqref{heat} 
+und
+\begin{equation}
+T(t)\phi:=e^{\Delta t}\phi:=\int_{\mathbb R^N} K(x-y,t) \phi(y)\, \mathrm dy 
+\end{equation}
+definiert eine stark stetige Halbgruppe auf $L^2(\mathbb R^N)$ (vgl. \cite{engel-nagel} Beispiel II.2.12). Sie erh\"alt Positivit\"at, sodass f\"ur $\phi \ge 0$ auch $T(t) \phi \ge 0$, und ist analytisch f\"ur $t>0$.
+\end{frame}
+
+\begin{frame}
+Sei $A_V= -\Delta - V(\cdot)$ ein Schr\"odinger-Operator auf $L^2(\mathbb R^N)$, sodass
+\begin{equation}
+0\le V\in L^\infty(\{x:|x|\ge \varepsilon\}), \quad \varepsilon >0.
+\end{equation}\label{perturbed}
+\pause
+Wie verhalten sich L\"osungen der gest\"orten W\"armeleitungsgleichung 
+%\begin{equation}
+%\partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
+%\end{equation}
+\begin{equation}
+(K_V): \qquad \begin{cases}
+\partial_t u - A_V u =0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0.
+\end{cases}
+\end{equation}
+\pause
+F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
+Was passiert, wenn $V$ zu singul\"ar wird?
+\end{frame}
+
+\begin{frame}
+Wir erlauben im Folgenden auch schwache L\"osungen von $(K_V)$. \vspace{.25cm}
+\begin{df}
+$u$ ist schwache L\"osung von $(K_V)$ falls, f\"ur jedes $T, R>0$, gilt
+\begin{gather}\label{weak}
+u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
+\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
+\end{gather}
+f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
+\end{df}
+\end{frame}
+
+\begin{frame}
+H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
+
+\begin{thm}[\textsc{Baras--Goldstein} \textbf{1984}]\label{main}
+Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
+\end{thm}
+%\begin{proof}[Beweisidee]
+%Sei $V_n(x)=\inf\{V_c(x), n\}$ das \emph{cutoff}-Potential. Bezeichne $u_n$ die L\"osung von
+%\begin{equation}\label{cutoff}
+%\begin{cases}
+%\partial_t u_n - \Delta u_n - V_n u_n =0, t\ge 0, x\in \mathbb R^N,\\
+%u_n(x,0)=u(x,0)=f(x)\ge 0.
+%\end{cases}
+%\end{equation}
+%Dann falls $c\le C^*(N)$ k\"onnen wir zum Grenzwert $n\to \infty$ \"ubergehen und erhalten eine L\"osung.  Die Schwierigkeit liegt im Erhalt der Konvergenz.
+%\end{proof}
+\end{frame}
+
+\section{Das Cabr\'e--Martel Theorem}
+\begin{frame}{Das Cabr\'e--Martel Theorem}
+Wir definieren den Grundzustand von $-(\Delta +V)$ durch
+\begin{equation}\label{groundstate}
+\lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
+\end{equation}
+\pause
+\begin{thm}[\textsc{Cabr\'e--Martel} \textbf{1999}]\label{martel}
+Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
+\begin{enumerate}[(i)]
+\item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive L\"osung $u\in C([0,\infty), L^2(\mathbb R^N))$, sodass
+\begin{equation}\label{exponential}
+\|u(t)\|_{L^2(\mathbb R^N)} \le e^{\omega t} \|u_0\|_{L^2(\mathbb R^N)}, t\ge 0
+\end{equation}
+f\"ur ein $\omega\in \mathbb R$.
+\item Falls $\lambda_1(\Delta + V)=-\infty$, dann folgt f\"ur $0\le u_0 \in L^2(\mathbb R^N)\setminus\{0\}$, dann gibt es keine positive L\"osung von $(K_V)$, sodass \eqref{exponential} erfüllt wird.
+\end{enumerate}
+\end{thm}
+\end{frame}
+
+\section{Hardy-Ungleichung und das Baras--Goldstein-Theorem}
+\begin{frame}{Hardy-Ungleichung und das Baras--Goldstein-Theorem}
+
+Mittels Cabr\'e--Martel können wir das Baras--Goldstein-Theorem beweisen. Die Existenz von Lösungen hängt stark mit der Hardy-Ungleichung und Optimalität der Konstanten zusammen.
+\begin{lem}[Hardy-Ungleichung]
+Sei $N\ge 3$. Dann gilt
+\begin{equation}\label{hardy}
+C^*(N) \int_{\mathbb R^N} \frac{\phi^2(x)}{|x|^2}\, \mathrm dx \le \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx, \quad \phi \in H^1(\mathbb R^N).
+\end{equation}
+\end{lem}
+\end{frame}
+
+\begin{frame}
+\begin{nt}
+Der Cabr\'e--Martel-Ansatz wurde in \cite{goldstein-rhandi} für gestörte Kolmogorov-Gleichungen
+\begin{equation}%\label{perturbed}
+\begin{cases}
+\partial_t u - (\Delta+V) u +\nabla \rho \cdot \nabla u=0, t\ge 0, x\in \mathbb R^N,\\
+u(x,0)=u_0 \ge 0
+\end{cases}
+\end{equation}
+studiert und für $\rho(x)=\frac{1}{2} Bx\cdot x$ beschreibt dies gerade einen \textsc{Ornstein--Uhlenbeck}-Prozess.  Für solche wurde in \cite{goldstein-rhandi} ein Analogon zum Baras--Goldstein-Theorem zur Existenz von Lösung durch den Beweis einer gewichteten Hardy-Ungleichung gezeigt.
+\end{nt}
+\end{frame}
+
+\section{Appendix}
+\begin{frame}
+\begin{tiny}
+\begin{thm}\label{bounded}
+Sei $(A, D(A))$ erzeugt von einer stark stetigen Halbgruppe $(T(t))_{t\ge 0}$ auf einem Banachraum $X$, sodass
+\begin{equation}
+\|T(t)\|\le M e^{\omega t}
+\end{equation}
+f\"ur alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, dann erzeugt $C:=A+B$ mit $D(C)=D(A)$ eine stark stetige Halbgruppe $(S(t))_{t\ge 0}$ mit
+\begin{equation}
+\|S(t)\|\le M e^{(w+ M\|B\|) t}
+\end{equation}
+f\"ur alle $t\ge 0$. Diese erf\"ullt das \emph{\textsc{Duhamel}-Prinzip}:
+\begin{equation}\label{duhamel}
+S(t) x = T(t) x + \int_0^t T(t-s) B S(s) x \,\mathrm ds
+\end{equation}
+f\"ur alle $t\ge 0$ und $x\in X$. 
+Außerdem lässt sich diese schreiben durch die stark konvergente \textsc{Dyson--Phillips}-Reihe
+\begin{equation}
+S(t)=\sum_{n=0}^\infty \tilde S_n(t),
+\end{equation}
+wobei $\tilde S_0(t):=T(t)$ und
+\begin{equation}
+\tilde S_{n+1} := \int_0^t T(t-s) B\tilde S_n(s)\, \mathrm dx.
+\end{equation}
+
+Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) und Analytizit\"at.
+\end{thm}
+\end{tiny}
+\end{frame}
+
+\begin{frame}
+\begin{thm}[\textsc{Trotter--Neveu--Kato}]
+Seien $T_k$ stark stetige, quasikontraktive Halbgruppe  auf $L^2$, so dass $0\le T_k(t) \le T_{k+1}(t)$ und
+\begin{equation}
+\|T_k(t)\|\le e^{\omega t},\quad \omega \in \mathbb R.
+\end{equation}  
+Dann existiert $T(t)f=\lim_{k\to \infty} T_k(t)f$ für alle $f\in L^2, t\ge 0$, und definiert eine stark stetige Halbgruppe $T$ auf $L^2$. 
+\end{thm}
+\end{frame}
+
+\begin{thebibliography}{tief}
+\bibitem{arendt} Arendt, Wolfgang; Batty, Charles J. K.; Hieber, Matthias; Neubrander, Frank:
+{\it Vector-valued Laplace transforms and Cauchy problems}.
+Monographs in Mathematics, 96. Birkhäuser Verlag, Basel, 2001. xii+523 pp.
+\bibitem{arendt-goldstein} Arendt, Wolfgang; Goldstein, Gisèle Ruiz; Goldstein, Jerome A.: 
+{\it Outgrowths of Hardy's inequality}. Recent advances in differential equations and mathematical physics, 51–68,
+Contemp. Math., 412, Amer. Math. Soc., Providence, RI, 2006.
+\bibitem{baras-goldstein} Baras, Pierre; Goldstein, Jerome A:
+{\it The heat equation with a singular potential}.
+Trans. Amer. Math. Soc. 284 (1984), no. 1, 121-139.
+\bibitem{cabre-martel} Cabr\'e, Xavier; Martel, Yvan:
+{\it Existence versus explosion instantan\'ee pour des \'equations de la chaleur lin\'eaires avec potentiel singulier}. (French. English, French summary) [Existence versus instantaneous blowup for linear heat equations with singular potentials]
+C. R. Acad. Sci. Paris S\'er. I Math. 329 (1999), no. 11, 973-978. 
+\bibitem{engel-nagel} Engel, Klaus-Jochen; Nagel, Rainer:
+{\it A short course on operator semigroups}. Universitext. Springer, New York, 2006.
+\bibitem{goldstein-rhandi} Goldstein, G. R.; Goldstein, J. A.; Rhandi, A.: {\it Weighted Hardy's inequality and the Kolmogorov equation perturbed by an inverse-square potential}.
+Appl. Anal. 91 (2012), no. 11, 2057-2071. 
+\bibitem{lady} Lady\v{z}enskaja, O. A.; Solonnikov, V. A.; Ural'ceva, N. N.
+{\it Linear and quasilinear equations of parabolic type}. (Russian)
+Translated from the Russian by S. Smith. Translations of Mathematical Monographs, Vol. 23 American Mathematical Society, Providence, R.I. 1968 xi+648 pp. 
+\bibitem{lorenzi} Lorenzi, Luca; Bertoldi, Marcello
+{\it Analytical methods for Markov semigroups}.
+Pure and Applied Mathematics (Boca Raton), 283. Chapman \& Hall/CRC, Boca Raton, FL, 2007. xxxii+526 pp.
+\bibitem{rhandi} Rhandi, Abdelaziz: {\it Heat and Ornstein-Uhlenbeck semigroups perturbed by an inverse-square potential}. 
+                     Unpublished, 2015.
+\bibitem{voigt} Voigt, Jürgen:
+{\it Absorption semigroups, their generators, and Schrödinger semigroups}.
+J. Funct. Anal. 67 (1986), no. 2, 167–205. 
+\end{thebibliography} 
+
+
+
+\end{document} 

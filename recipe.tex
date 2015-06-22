@@ -292,6 +292,20 @@ Es folgt somit
 $\lambda\mapsto \lambda(N-2)-\lambda^2$ nimmt sein Maximum bei $\lambda= \frac{N-2}{2}$ an und es ergibt sich \eqref{hardy}. Die Aussage überträgt sich mit Dichtheit wegen $H^1(\mathbb R^N) = H_0^1(\mathbb R^N\setminus\{0\})$.
 \end{proof}
 
+\emph{Alternative 2:} Wie bereits erwähnt genügt es die Gleichung für $\phi \in C_c^\infty(\mathbb R^N\setminus\{0\})$ zu zeigen.  Sei $\mathcal R$ das radiale Vektorfeld $\mathcal R=\sum_{i=1}^d x_i \partial_{i}$. Da $\mathcal R|x|^{-2}=-2|x|^{-2}$ führt partielle Integration zu
+\begin{equation}
+\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2}\, \mathrm dx = \frac{1}{2} \int_{\mathbb R^d} \frac{2f(x) \mathcal Rf(x)}{|x|^2} \, \mathrm dx + \frac{d}{2} \int_{\mathbb R^d} \frac{|f(x)|^2}{|x|^2} \, \mathrm dx.
+\end{equation}
+Mit der Cauchy-Schwarz-Ungleichung folgt
+\begin{align*}
+\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \, \mathrm dx &=  \frac{2}{2-d} \int_{\mathbb R^d} \frac{f(x) \mathcal Rf(x)}{|x|^2}\, \mathrm dx\\
+&\le \frac{2}{d-1}\left ( \int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2}\, \mathrm dx \right )^{1/2} \left ( \int_{\mathbb R^N} \frac{|\mathcal R f(x)|^2}{|x|^2} \, \mathrm dx \right )^{1/2},
+\end{align*}
+und damit
+\begin{equation}
+\left (\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \right )^{1/2}\le \frac{2}{d-2} \left ( \int_{\mathbb R^N} |\nabla f(x)|^2\, \mathrm dx \right )^{1/2}.
+\end{equation}
+
 \begin{proof}[Beweis von Theorem \ref{main}]
 Die Existenz von Lösungen folgt für $c\le C^*(N)$ direkt aus Theorem \ref{martel}, da mit der Hardy-Ungleichung \eqref{hardy} folgt
 \begin{equation}
@@ -326,7 +340,7 @@ Theorem \ref{martel} wurde in \cite{goldstein-rhandi} für gestörte Kolmogorov-
 u(x,0)=u_0 \ge 0
 \end{cases}
 \end{equation}
-studiert und für $\rho(x)=\frac{1}{2} Bx\cdot x$ beschreibt dies gerade einen \textsc{Ornstein--Uhlenbeck}-Prozess.  Für solche wurde in \cite{goldstein-rhandi} ein Analogon zum Baras--Goldstein-Theorem zur Existenz von Lösung durch den Beweis einer gewichteten Hardy-Ungleichung gezeigt.
+studiert (für eine geeignete Einführung verweisen wir auf \cite{lorenzi}) und für $\rho(x)=\frac{1}{2} Bx\cdot x$, wobei $B\in \mathbb R^{N\times N}$ positive definite Matrix, beschreibt dies gerade einen \textsc{Ornstein--Uhlenbeck}-Prozess.  Für solche wurde in \cite{goldstein-rhandi} ein Analogon zum Baras--Goldstein-Theorem zur Existenz von Lösung durch den Beweis einer gewichteten Hardy-Ungleichung gezeigt.
 \end{nt}
 \appendix
 \section{Appendix}
@@ -364,20 +378,28 @@ Wir verweisen auf \cite{engel-nagel} Satz III.1.3, Korollar III.1.7 und Satz III
 %Die Positivit\"at der Halbgruppe folgt aus \cite{engel-nagel} Korollar VI.2.4 und die Analytiz\"at nach Theorem III.2.10. 
 \end{proof}
 
-
-Sei wie vorher seien $u_n$ die Lösungen von \eqref{cutoff2}. Dann folgt in direkter Konsequenz zu vorigem Theorem $u_n\ge e^{\Delta t} u_0> 0$ für $t>0$. So folgt mit \eqref{duhamel} 
-\begin{equation}
-u_{n+1}(t) -u_n(t)= \int_0^t e^{\Delta + V_n} (V_{n+1}-V_n) u_{n}(s)\, \mathrm ds\ge 0.
-\end{equation}
-Also folgt
+\begin{lem} Seien $u_n$ Lösungen von \eqref{cutoff2}, dann gilt
 \begin{equation}
 0 <u_n \le u_{n+1}.
 \end{equation}
-Als nächstes wollen wir das Maximumsprinzip 
+\end{lem}
+%Sei wie vorher seien $u_n$ die Lösungen von \eqref{cutoff2}. Dann folgt i
+\begin{proof}
+In direkter Konsequenz zu vorigem Theorem folgt $u_n\ge e^{\Delta t} u_0> 0$ für $t>0$. Dann folgt mit \eqref{duhamel} 
 \begin{equation}
-0<u_n(t)\le u(t)
+u_{n+1}(t) -u_n(t)= \int_0^t e^{\Delta + V_n} (V_{n+1}-V_n) u_{n}(s)\, \mathrm ds\ge 0.
 \end{equation}
-zeigen.  Mit der Definition von schwachen Lösungen folgt
+\end{proof}
+%Also folgt:
+
+Als nächstes wollen wir das Maximumsprinzip zeigen:
+\begin{lem} Seien $u_n$ Lösungen von \eqref{cutoff2} und positive Lösung von \eqref{perturbed}, dann gilt
+\begin{equation}
+0<u_n(t)\le u(t), \quad t\ge 0.
+\end{equation}
+\end{lem}
+\begin{proof}
+Mit der Definition von schwachen Lösungen folgt
 \begin{equation}
 \int_0^T \int_{\mathbb R^N} (u_n-u) (-\partial_t \phi - \Delta \phi - V_n \phi) \, \mathrm dx \, \mathrm dt = \int_0^T \int_{\mathbb R^N} (V_n -V) u\phi \, \mathrm dx \, \mathrm dt \le 0
 \end{equation} 
@@ -403,6 +425,7 @@ und somit folgt
 \begin{equation}
 0<u_n \le u, \quad t\ge 0.
 \end{equation}
+\end{proof}
 
 Als Letztes wollen wir einen Beweis zu einer Variation des \textsc{Trotter--Never--Kato}-Theorems angeben.  Der Folgende mit Verallgemeinerung ist zum Beispiel für kontraktive Halbgruppen zu finden als Proposition 3.6 in \cite{arendt-goldstein}, der aber aus \cite{voigt} stammt.
 
@@ -461,193 +484,4 @@ Pure and Applied Mathematics (Boca Raton), 283. Chapman \& Hall/CRC, Boca Raton,
 {\it Absorption semigroups, their generators, and Schrödinger semigroups}.
 J. Funct. Anal. 67 (1986), no. 2, 167–205. 
 \end{thebibliography} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \end{document}
-package{mathtools}
-\mathtoolsset{showonlyrefs}
-\usepackage{mathdots}
-
-\usepackage{fancyhdr} % Required for custom headers
-\usepackage{lastpage} % Required to determine the last page for the footer
-\usepackage{extramarks} % Required for headers and footers
-\usepackage{graphicx} % Required to insert images
-%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
-\usepackage{amsmath}
-%\usepackage{amsfont}
-%\usepackage{amssymb}
-
-\newtheorem{thm}{Theorem}
-\newtheorem{st}[thm]{Satz}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{df}[thm]{Definition}
-\newtheorem{kor}[thm]{Korollar}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{alg}[thm]{Algorithmus}
-
-%\theoremheadertypefont{\color{black}} % Font f\"ur Theorem-Typ (Satz, Definition, etc.)
-\theoremstyle{break}
-
-\newtheorem{nt}[thm]{Bemerkung}
-\newtheorem{ex}[thm]{Beispiel}
-
-\newtheorem*{note}{Bemerkung}
-
-\usepackage{multicol}
-% Margins
-\topmargin=-0.5in
-\evensidemargin=0in
-\oddsidemargin=-0.5in
-\textwidth=7.5in
-\textheight=9.0in
-\headsep=0.5in 
-
-\pagestyle{fancy}
-
-\rhead{Matthias \textsc{Hofmann}} % Top right header
-\lhead{Schr\"odinger mit inversquadratischem Potential\\
-\today}
-\chead{ }
-%\title{}
-
-\begin{document}
-\begin{titlepage}
-
-\begin{center}
-
-
-% Oberer Teil der Titelseite:
-
-\textsc{\LARGE Universit\"at Stuttgart}\\[1.5cm]
-
-\textsc{\Large Masterseminar Funktionalanalysis}\\[0.5cm]
-
-
-% Title
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-\HRule \\[0.4cm]
-{ \huge \bfseries Schr\"odingeroperatoren mit inversquadratischem Potential}\\[0.4cm]
-
-\HRule \\[1.5cm]
-
-% Author and supervisor
-
-\begin{center} \Large
-Matthias \textsc{Hofmann}
-\end{center}
-
-\hfill
-
-\vfill
-
-% Unterer Teil der Seite
-{\large \today}
-
-\end{center}
-
-\end{titlepage}
-\section{Einf\"uhrung}
-Wir betrachten im Folgenden die W\"armeleitungsgleichung
-\begin{equation}\label{heat}
-\begin{cases}
-\partial_t u - \Delta u =0, t\ge 0, x\in \mathbb R^N,\\
-u(x,0)=u_0 \ge 0.
-\end{cases}
-\end{equation}
-Dann ist die L\"osung der W\"armeleitungsgleichung eindeutig durch
-\begin{equation}
-u(x,t)=\int_{\mathbb R^N} K(x-y, t) u_0(y) \, \mathrm dy,
-\end{equation}
-wobei $K(x)=\frac{1}{(4\pi t)^{n/2}} e^{-|x|^2/4t}$. Dann ist $u(x,t)$ die klassische L\"osung des Problems \eqref{heat} 
-und
-\begin{equation}
-T(t)\phi:=e^{\Delta t}\phi:=\int_{\mathbb R^N} K(x-y,t) \phi(y)\, \mathrm dy 
-\end{equation}
-definiert eine stark stetige Halbgruppe auf $L^2(\mathbb R^N)$ (vgl. \cite{engel-nagel} Beispiel II.2.12). Sie erh\"alt Positivit\"at, sodass f\"ur $\phi \ge 0$ auch $T(t) \phi \ge 0$, und ist analytisch f\"ur $t>0$.
-
-Sei $A_V= -\Delta - V(\cdot)$ ein Schr\"odinger-Operator auf $L^2(\mathbb R^N)$, sodass
-\begin{equation}
-0\le V\in L^\infty(\{x:|x|\ge \varepsilon\})
-\end{equation}\label{perturbed}
-f\"ur jedes $\varepsilon>0$. Wie verhalten sich L\"osungen der gest\"orten W\"armeleitungsgleichung 
-\begin{equation}
-\partial_t u +A_V u =0\quad (x\in \mathbb R^N, t\ge 0).
-\end{equation}
-F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
-Was passiert, wenn $V$ zu singul\"ar wird?
-
-Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{heat}. \vspace{.25cm}
-\begin{df}
-$u$ ist schwache L\"osung von \eqref{perturbed} falls, f\"ur jedes $T, R>0$, gilt
-\begin{gather}
-u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
-\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
-\end{gather}
-f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
-\end{df}
-
-H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
-
-\begin{thm}[Baras--Goldstein]
-Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
-\end{thm}
-\begin{proof}[Beweisidee]
-Sei $V_n(x)=\inf\{V_c(x), n\}$ das \emph{cutoff}-Potential. Bezeichne $u_n$ die L\"osung von
-\begin{equation}\label{cutoff}
-\begin{cases}
-\partial_t u_n - \Delta u_n - V_n u_n =0, t\ge 0, x\in \mathbb R^N,\\
-u_n(x,0)=u(x,0)=f(x)\ge 0.
-\end{cases}
-\end{equation}
-Dann falls $c\le C^*(N)$ k\"onnen wir zum Grenzwert $n\to \infty$ \"ubergehen und erhalten eine L\"osung.  Die Schwierigkeit liegt im Erhalt der Konvergenz.
-\end{proof}
-
-\section{Das Cabr\'e--Martel Theorem}
-
-Wir definieren den Grundzustand von $-(\Delta +V)$ durch
-\begin{equation}
-\lambda_1(\Delta + V):= \inf_{\phi \in H^1(\mathbb R^N)\setminus \{0\}} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx - \int_{\mathbb R^N} V\phi^2\, \mathrm dx}{\int_{\mathbb R^N} \phi^2\, \mathrm dx} \right ).
-\end{equation}
-X. Cabr\'e und Y. Martel zeigten 1999 den Zusammenhang zwischen Existenz von schwachen L\"osungen von \eqref{heat} und der Existenz eines Grundzustands. 
-\begin{thm}[Cabr\'e--Martel Theorem]
-Sei $0\le V\in L^1_{\text{loc}}(\mathbb R^N), N\ge 3$.  Es folgt:
-\begin{enumerate}[(i)]
-\item Falls $\lambda_1(\Delta + V) > -\infty$, dann existiert eine postive L

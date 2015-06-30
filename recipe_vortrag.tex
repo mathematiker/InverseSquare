@@ -36,6 +36,16 @@
 \colorlet{brouge}{red!70!blue}
 \mode<presentation>
 \usetheme{Madrid}
+
+\mode<presentation> { \setbeamercovered{transparent} }
+\makeatletter
+\def\beamerorig@set@color{%
+  \pdfliteral{\current@color}%
+  \aftergroup\reset@color
+}
+\def\beamerorig@reset@color{\pdfliteral{\current@color}}
+\makeatother
+
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
 \AtBeginSection[]
@@ -238,6 +248,29 @@ f\"ur ein $\omega\in \mathbb R$.
 \end{thm}
 \end{frame}
 
+\begin{frame}
+\begin{equation*}
+\begin{split}
+\uncover<1->{\int_{\mathbb R^N} V_n \phi^2\, \mathrm dx&= \partial_t\left ( (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathbb R^N} \nabla u_n \cdot \nabla \left (\frac{\phi^2}{u_n} \right )\\}
+\uncover<2->{&= \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ 2 \int_{\mathbb R^N} (\nabla u_n \cdot \nabla \phi) \frac{\phi}{u_n} \, \mathrm dx \\
+&\ \qquad- \int_{\mathbb R^N} |\nabla u_n |^2 \frac{\phi^2}{u_n^2} \, \mathrm dx \\}
+\uncover<3->{&\le \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right ) + 2 \left ( \int_{\mathbb R^N} |\nabla u_n|^2 \frac{\phi^2}{u_n^2} \, \mathrm dx \right )^{1/2} \\
+&\ \qquad \left ( \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx\right )^{1/2}- \int_{\mathbb R^N} |\nabla u_n|^2 \frac{\phi^2}{u_n^2}\, \mathrm dx \\} \uncover<4->{&\le \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathrm R^N} |\nabla \phi|^2\, \mathrm dx.}
+\end{split}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+\begin{align*}
+&\quad\int_{\mathbb R^N} V \phi^2 \, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx\\
+&\le \frac{1}{t-1} \left \{ \log \left [ \left (\int_{\mathbb R^N} \tilde u(t)^2 \, \mathrm dx \right )^{1/2} \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right )^{1/2}\right ] - \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\
+&\le \frac{1}{2t-1} \left \{ \log  \left (\int_{\mathbb R^N} \tilde u(t)^2 \, \mathrm dx \right )+ \log \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right ) - 2 \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\
+&\le \frac{1}{2t-1} \left \{ \log  \left (\int_{\mathbb R^N} u(t)^2 \, \mathrm dx \right )+ \log \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right ) - 2 \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\
+&\le \frac{1}{2(t-1)}\{2\log(M) + 2\omega t + 2\log \|u_0\|_{L^2(\mathbb R^N)}  \\
+&\ \qquad\qquad\qquad+ 2\log\|\phi\|_\infty- 2\int_{\mathbb R^N} \log(\tilde u(1)) \phi^2\, \mathrm dx \}
+\end{align*}
+\end{frame}
+
 \section{Hardy-Ungleichung und das Baras--Goldstein-Theorem}
 \begin{frame}{Hardy-Ungleichung und das Baras--Goldstein-Theorem}
 
@@ -264,9 +297,8 @@ studiert (eine Einführung zu Kolmogorov-Gleichungen ist z.B. in \cite{lorenzi} 
 \end{frame}
 
 \section{Appendix}
-\begin{frame}
-\begin{tiny}
-\begin{thm}\label{bounded}
+\begin{frame}[allowframebreaks]{Satz über beschränkte Störungen}
+\begin{block}{Theorem}
 Sei $(A, D(A))$ erzeugt von einer stark stetigen Halbgruppe $(T(t))_{t\ge 0}$ auf einem Banachraum $X$, sodass
 \begin{equation}
 \|T(t)\|\le M e^{\omega t}
@@ -275,7 +307,10 @@ f\"ur alle $t\ge 0$ und $w\in \mathbb R$, $M\ge 1$. Falls $B\in \mathcal L(X)$, 
 \begin{equation}
 \|S(t)\|\le M e^{(w+ M\|B\|) t}
 \end{equation}
-f\"ur alle $t\ge 0$. Diese erf\"ullt das \emph{\textsc{Duhamel}-Prinzip}:
+f\"ur alle $t\ge 0$. 
+\end{block}
+\begin{block}{}
+Diese erf\"ullt das \emph{\textsc{Duhamel}-Prinzip}:
 \begin{equation}\label{duhamel}
 S(t) x = T(t) x + \int_0^t T(t-s) B S(s) x \,\mathrm ds
 \end{equation}
@@ -290,8 +325,8 @@ wobei $\tilde S_0(t):=T(t)$ und
 \end{equation}
 
 Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) und Analytizit\"at.
-\end{thm}
-\end{tiny}
+\end{block}
+
 \end{frame}
 
 %\begin{frame}
@@ -308,7 +343,7 @@ Insbesondere \"ubertragen sich Eigenschaften wie Postivit\"at (falls $B\ge 0$) u
 %\end{lem}
 %\end{frame}
 
-\begin{frame}
+\begin{frame}{Trotter--Kato Approximationstheorem}
 \begin{thm}[\textsc{Trotter--Neveu--Kato}]
 Seien $T_k$ stark stetige, quasikontraktive Halbgruppe  auf $L^2$, so dass $0\le T_k(t) \le T_{k+1}(t)$ und
 \begin{equation}

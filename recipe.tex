@@ -63,6 +63,11 @@
 \chead{ }
 %\title{}
 
+%\usepackage{environ}
+%\NewEnviron{killcontents}{}
+%\let\proof\killcontents
+%\let\endproof\endkillcontents
+
 \begin{document}
 \cleardoublepage
 \begin{titlepage}
@@ -150,7 +155,7 @@ u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
 f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
 \end{df}
 
-H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{N} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
+H. Brezis und J. L. Lions vermuteten, dass f\"ur $V(x) \le \frac{C}{|x|^{2-\varepsilon}}$ mit $C, \varepsilon>0$ keine positive L\"osungen besitzt. P. Baras und A. Goldstein l\"osten die Problemstellung.  Sei dazu $C^*(N)=( \tfrac{N-2}{2} )^2$ und $V_c(x) = \frac{c}{|x|^2}$. \vspace{.25cm}
 
 \begin{thm}[\textsc{Baras--Goldstein} \textbf{1984}, \cite{baras-goldstein}]\label{main}
 Die Gleichung  $\partial_t u + A_{V_c} u =0, (x\in \mathbb R^N, t\ge0)$ besitzt positive L\"osungen (z.B. f\"ur $u(x,0)=u_0(x)$ f\"ur jedes $0\le u_0\in L^2(\mathbb R^N)$) falls $c\le C^*(N)$ und keine positive L\"osungen falls $c>C^*(N)$.
@@ -290,26 +295,26 @@ Es folgt somit
 (\lambda(N-2) -\lambda^2)\int_{\mathbb R^N} \frac{\phi^2}{|x|^2}\, \mathrm dx \le \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx.
 \end{equation}
 $\lambda\mapsto \lambda(N-2)-\lambda^2$ nimmt sein Maximum bei $\lambda= \frac{N-2}{2}$ an und es ergibt sich \eqref{hardy}. Die Aussage überträgt sich mit Dichtheit wegen $H^1(\mathbb R^N) = H_0^1(\mathbb R^N\setminus\{0\})$.
-\end{proof}
 
 \emph{Alternative 2:} Wie bereits erwähnt genügt es die Gleichung für $\phi \in C_c^\infty(\mathbb R^N\setminus\{0\})$ zu zeigen.  Sei $\mathcal R$ das radiale Vektorfeld $\mathcal R=\sum_{i=1}^d x_i \partial_{i}$. Da $\mathcal R|x|^{-2}=-2|x|^{-2}$ führt partielle Integration zu
 \begin{equation}
-\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2}\, \mathrm dx = \frac{1}{2} \int_{\mathbb R^d} \frac{2f(x) \mathcal Rf(x)}{|x|^2} \, \mathrm dx + \frac{d}{2} \int_{\mathbb R^d} \frac{|f(x)|^2}{|x|^2} \, \mathrm dx.
+\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2}\, \mathrm dx = \frac{1}{2} \int_{\mathbb R^N} \frac{2f(x) \mathcal Rf(x)}{|x|^2} \, \mathrm dx + \frac{N}{2} \int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \, \mathrm dx.
 \end{equation}
 Mit der Cauchy-Schwarz-Ungleichung folgt
 \begin{align*}
-\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \, \mathrm dx &=  \frac{2}{2-d} \int_{\mathbb R^d} \frac{f(x) \mathcal Rf(x)}{|x|^2}\, \mathrm dx\\
-&\le \frac{2}{d-1}\left ( \int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2}\, \mathrm dx \right )^{1/2} \left ( \int_{\mathbb R^N} \frac{|\mathcal R f(x)|^2}{|x|^2} \, \mathrm dx \right )^{1/2},
+\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \, \mathrm dx &=  \frac{2}{2-N} \int_{\mathbb R^N} \frac{f(x) \mathcal Rf(x)}{|x|^2}\, \mathrm dx\\
+&\le \frac{2}{N-2}\left ( \int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2}\, \mathrm dx \right )^{1/2} \left ( \int_{\mathbb R^N} \frac{|\mathcal R f(x)|^2}{|x|^2} \, \mathrm dx \right )^{1/2},
 \end{align*}
 und damit
 \begin{equation}
-\left (\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \right )^{1/2}\le \frac{2}{d-2} \left ( \int_{\mathbb R^N} |\nabla f(x)|^2\, \mathrm dx \right )^{1/2}.
+\left (\int_{\mathbb R^N} \frac{|f(x)|^2}{|x|^2} \right )^{1/2}\le \frac{2}{N-2} \left ( \int_{\mathbb R^N} |\nabla f(x)|^2\, \mathrm dx \right )^{1/2}.
 \end{equation}
+\end{proof}
 
 \begin{proof}[Beweis von Theorem \ref{main}]
 Die Existenz von Lösungen folgt für $c\le C^*(N)$ direkt aus Theorem \ref{martel}, da mit der Hardy-Ungleichung \eqref{hardy} folgt
 \begin{equation}
-\lambda_1(\Delta + \frac{c}{|x|^2})= \inf_{0\neq \phi \in H^1(\mathbb R^N)} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2 \, \mathrm dx - \int_{\mathbb R^N} c \frac{\phi^2}{|x|^2}}{\phi^2} \right )\ge 0.
+\lambda_1(\Delta + \frac{c}{|x|^2})= \inf_{0\neq \phi \in H^1(\mathbb R^N)} \left ( \frac{\int_{\mathbb R^N} |\nabla \phi|^2 \, \mathrm dx - \int_{\mathbb R^N} c \frac{\phi^2}{|x|^2}\, \mathrm dx}{\int_{\mathbb R^N}\phi^2\, \mathrm dx} \right )\ge 0.
 \end{equation}
 Sei $c>C^*(N)$. Um die Nichtexistenz von Lösungen zu zeigen, wählen wir für $\frac{2-N}{2}<\gamma <0$ geeignete $\phi_\gamma\in H^1(\mathbb R^N)$, sodass
 \begin{equation}
@@ -408,7 +413,7 @@ für alle $0\le \phi \in H_0^2(B_R \times [0, T))$ und $T,R>0$.  Sei $0 \le \psi
 \begin{cases}
 \partial_t \phi + \Delta \phi + V_n \phi = - \psi.\\
 \phi\big|_{\partial B_R \times (0,T)} =0,\\
-\phi(\cdot ,T)=0, \quad \phi(\cdot, t)
+\phi(\cdot ,T)=0
 \end{cases}
 \end{equation}
 Wir können 
@@ -442,10 +447,10 @@ Dann existiert $T(t)f=\lim_{k\to \infty} T_k(t)f$ für alle $f\in L^2, t\ge 0$, 
 \begin{proof}
 Die Existenz des starken Grenzwerts folgt mit monotoner Konvergenz und $T(t)\in \mathcal L(L^2)$ und $T(t+s)=T(t) T(s)$ für $t,s\ge 0$.  Es bleibt starke Stetigkeit des Grenzwerts zu zeigen.  Sei $t_n\downarrow 0$, $0\le f\in L^2$.  Dann ist zu zeigen: $f_n:=T(t_n)f\to f$ wenn $n\to \infty$. Sei $g_n:=T_1(t_n) f$. Dann $0\le g_n \le f_n$ und $g_n \to f$ wenn $n\to \infty$. Weiter folgt $\|g_n\|_{L^2} \le \|f\|_{L^2}$.
 
-Es genügt zu zeigen, dass jede Teilfolge von $(f_n)$ eine konvergente Teilfolge besitzt.  OBdA können wir annehmen, folgt dass $f_n$ schwach gegen $h\in L^p$ konvergiert (sonst wähle eine Teilfolge).  Da $g_n \le f_n$ und $g_n \to f$ folgt, dass $f\le h$.  Damit ergibt sich $\| f\|_{L^p}\le \|h\|_{L^p}$. 
+Es genügt zu zeigen, dass jede Teilfolge von $(f_n)$ eine gegen $f$ konvergente Teilfolge besitzt.  OBdA können wir annehmen, dass $f_n$ schwach gegen $h\in L^2$ konvergiert (sonst wähle eine Teilfolge).  Da $g_n \le f_n$ und $g_n \to f$ folgt, dass $f\le h$.  Damit ergibt sich $\| f\|_{L^2}\le \|h\|_{L^2}$. 
 Insbesondere $g_n \to f$ in $L^2$ und wir folgern
 \begin{equation}
-\| h\|_{L^2(\mathbb R^n)}  \le \liminf_{n\to \infty} \| f_n\|_{L^2(\mathbb R^n}\le \liminf_{n\to \infty} e^{\omega t_n} \|f\|_{L^2(\mathbb R^n)}=\| f\|_{L^2(\mathbb R^n)}
+\| h\|_{L^2(\mathbb R^n)}  \le \liminf_{n\to \infty} \| f_n\|_{L^2(\mathbb R^n)}\le \liminf_{n\to \infty} e^{\omega t_n} \|f\|_{L^2(\mathbb R^n)}=\| f\|_{L^2(\mathbb R^n)}
 \end{equation}
 und daher $f_n\to f$ in $L^2(\mathbb R^n)$.
 \end{proof}

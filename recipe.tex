@@ -150,7 +150,7 @@ Wir erlauben im Folgenden auch schwache L\"osungen von \eqref{perturbed}. \vspac
 $u$ ist schwache L\"osung von \eqref{perturbed} falls, f\"ur jedes $T, R>0$, gilt
 \begin{gather}\label{weak}
 u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
-\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
+\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - \Delta\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} u_0 \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
 \end{gather}
 f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
 \end{df}
@@ -229,7 +229,7 @@ Nach dem Trotter--Neveu--Kato Theorem (vgl. Appendix) folgt die Existenz einer s
 \end{equation}
 Mit monotoner Konvergenz folgt die Existenz eines punktweisen Grenzwerts $u_n(t)\to \tilde u(t), t\ge 0$, die sogenannte milde L\"osung des Problems.  
 
-Multiplizieren wir \eqref{cutoff2} mit $\frac{\phi^2}{u_n}$ und integrieren wir, so ergibt sich
+Multiplizieren wir \eqref{cutoff2} mit $\frac{\phi^2}{u_n}$, wobei $\phi\in C_c^\infty(\mathbb R^N)$ und $\| \phi \|_{L^2(\mathbb R^N)}=1$, und integrieren wir, so ergibt sich
 \begin{equation}
 \int_{\mathbb R^N} V_n \phi^2\, \mathrm dx \le \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathrm R^N} |\nabla \phi|^2\, \mathrm dx.
 \end{equation}

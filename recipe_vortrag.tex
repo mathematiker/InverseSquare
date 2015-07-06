@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[handout]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel} 	% Deutsche Sprachunterst\"utzung f\"ur Silbentrennung, etc.
 \usepackage[T1]{fontenc}		% Erlaubt das kopieren/suchen von/nach Umlauten im pdf-Dokument
@@ -251,7 +251,7 @@ f\"ur ein $\omega\in \mathbb R$.
 \begin{frame}
 \begin{equation*}
 \begin{split}
-\uncover<1->{\int_{\mathbb R^N} V_n \phi^2\, \mathrm dx&= \partial_t\left ( (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathbb R^N} \nabla u_n \cdot \nabla \left (\frac{\phi^2}{u_n} \right )\\}
+\uncover<1->{\int_{\mathbb R^N} V_n \phi^2\, \mathrm dx&= \partial_t\left (\int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ \int_{\mathbb R^N} \nabla u_n \cdot \nabla \left (\frac{\phi^2}{u_n} \right )\\}
 \uncover<2->{&= \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right )+ 2 \int_{\mathbb R^N} (\nabla u_n \cdot \nabla \phi) \frac{\phi}{u_n} \, \mathrm dx \\
 &\ \qquad- \int_{\mathbb R^N} |\nabla u_n |^2 \frac{\phi^2}{u_n^2} \, \mathrm dx \\}
 \uncover<3->{&\le \partial_t \left ( \int_{\mathbb R^N} (\log u_n) \phi^2\, \mathrm dx \right ) + 2 \left ( \int_{\mathbb R^N} |\nabla u_n|^2 \frac{\phi^2}{u_n^2} \, \mathrm dx \right )^{1/2} \\

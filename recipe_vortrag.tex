@@ -194,7 +194,7 @@ u(x,0)=u_0 \ge 0.
 \end{cases}
 \end{equation}
 \pause
-F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz \ref{bounded} (s. Appendix) f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
+F\"ur $V\in L^\infty(\mathbb R^N)$ definiert $V$ einen beschr\"ankten Multiplikationsoperator und die Existenz von klassischen L\"osungen folgt aus dem Satz f\"ur beschr\"ankte St\"orungen. %\vspace{.25cm}
 Was passiert, wenn $V$ zu singul\"ar wird?
 \end{frame}
 
@@ -204,7 +204,7 @@ Wir erlauben im Folgenden auch schwache L\"osungen von $(K_V)$. \vspace{.25cm}
 $u$ ist schwache L\"osung von $(K_V)$ falls, f\"ur jedes $T, R>0$, gilt
 \begin{gather}\label{weak}
 u\in L^1(B(0,R) \times (0,T)), Vu \in L^1(B(0,R)\times (0,T)) \text{ und }\\
-\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - L\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} f \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
+\int_0^T \int_{\mathbb R^N} u (-\partial_t \phi - \Delta\phi) \, \mathrm dx \, \mathrm dt - \int_{\mathbb R^N} u_0 \phi(\cdot, 0) \, \mathrm dx = \int_0^T \int_{\mathbb R^N} V u \phi \, \mathrm dx \, \mathrm dt
 \end{gather}
 f\"ur alle $\phi \in C_c^2(\mathbb R^N\times [0,T))$.
 \end{df}
@@ -263,11 +263,11 @@ f\"ur ein $\omega\in \mathbb R$.
 \begin{frame}
 \begin{align*}
 &\quad\int_{\mathbb R^N} V \phi^2 \, \mathrm dx - \int_{\mathbb R^N} |\nabla \phi|^2\, \mathrm dx\\
-&\le \frac{1}{t-1} \left \{ \log \left [ \left (\int_{\mathbb R^N} \tilde u(t)^2 \, \mathrm dx \right )^{1/2} \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right )^{1/2}\right ] - \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\
-&\le \frac{1}{2t-1} \left \{ \log  \left (\int_{\mathbb R^N} \tilde u(t)^2 \, \mathrm dx \right )+ \log \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right ) - 2 \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\
-&\le \frac{1}{2t-1} \left \{ \log  \left (\int_{\mathbb R^N} u(t)^2 \, \mathrm dx \right )+ \log \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right ) - 2 \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\
-&\le \frac{1}{2(t-1)}\{2\log(M) + 2\omega t + 2\log \|u_0\|_{L^2(\mathbb R^N)}  \\
-&\ \qquad\qquad\qquad+ 2\log\|\phi\|_\infty- 2\int_{\mathbb R^N} \log(\tilde u(1)) \phi^2\, \mathrm dx \}
+\uncover<2->{&\le \frac{1}{t-1} \left \{ \log \left [ \left (\int_{\mathbb R^N} \tilde u(t)^2 \, \mathrm dx \right )^{1/2} \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right )^{1/2}\right ] - \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\}
+\uncover<3->{&\le \frac{1}{2t-1} \left \{ \log  \left (\int_{\mathbb R^N} \tilde u(t)^2 \, \mathrm dx \right )+ \log \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right ) - 2 \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\}
+\uncover<4->{&\le \frac{1}{2t-1} \left \{ \log  \left (\int_{\mathbb R^N} u(t)^2 \, \mathrm dx \right )+ \log \left ( \int_{\mathbb R^N} \phi^4 \, \mathrm dx \right ) - 2 \int_{\mathbb R^N} \log(\tilde u(1))\phi^2\, \mathrm dx \right \}\\}
+\uncover<5>{&\le \frac{1}{2(t-1)}\{2\log(M) + 2\omega t + 2\log \|u_0\|_{L^2(\mathbb R^N)}  \\
+&\ \qquad\qquad\qquad+ 2\log\|\phi\|_\infty- 2\int_{\mathbb R^N} \log(\tilde u(1)) \phi^2\, \mathrm dx \}}
 \end{align*}
 \end{frame}
 
